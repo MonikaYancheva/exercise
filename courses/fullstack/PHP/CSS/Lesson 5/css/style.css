@@ -1,0 +1,61 @@
+a {
+	text-decoration: none;
+	color: #333;
+}
+a:hover {
+	color: dimgray;
+}
+a:active {
+	color:white;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.btn {
+	background-color: #8c0104;
+	color: #FFF;
+	padding: 5px 10px;
+	box-shadow: 1px 1px 2px #333;
+	border-radius: 2px;
+}
+
+
+
+.btn:active{
+	background-color: #333;
+	box-shadow: inset 1px 1px 2px #333;
+	border-radius: 2px;
+}
+
+.btn2 {
+	background-color: #927aed;
+	color: #ffe64b;
+	padding: 5px 10px;
+	box-shadow: 2px 2px 3px #333;
+	border-radius: 3px;
+}
+
+
+.btn2:active{
+	background-color: #301c7a;
+	box-shadow: inset  2px 2px 3px #333;
+	border-radius: 3px;
+}
+
+.btn3 {
+	background-color: #ebe400;
+	color: #5bd604;
+	padding: 5px 10px;
+	box-shadow: 3px 3px 4px #333;
+	border-radius: 4px;
+}
+
+
+
+.btn3:active{
+	background-color: #fa8502;
+	box-shadow: inset 3px 3px 4px #333;
+	border-radius: 4px;
+}

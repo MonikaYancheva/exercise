@@ -1,0 +1,10 @@
+a {
+	text-decoration: none;
+	color: #333;
+}
+a:hover{
+	color: red;
+}
+a:active{
+	color: green;
+}

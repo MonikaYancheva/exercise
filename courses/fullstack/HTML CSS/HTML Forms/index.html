@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+	<title>Форми в HTML</title>
+</head>
+<body>
+    <form action="index.html" method="POST" enctype="multiple/form-data">
+	
+	  <fieldset>
+	  
+	   <legend>Готварска рецепта:</legend>
+	  
+	  
+	    <div>
+	       <label for="Заглавие">Въведете заглавие на рецептата:</label><br/>
+	       <input type="text" name="Заглавие" id="Заглавие"/>
+	    </div> 
+		
+		<div>
+		    <label for="Продукти">Въведете продукти:</label><br/>
+			<input type="text" name="Продукти" id="Продукти"/>
+		</div>
+		
+		<div>
+		    <label for="начин_на_приготвяне">Въведете начин на приготвяне:</label><br/>
+			<textarea name="начин_на_приготвяне" id="начин_на_приготвяне" cols="30" rows="20"></textarea>
+		</div>
+		
+		<div>
+		    <label for="picture">Моля изберете снимка:</label><br/>
+			<input type="file" name="picture" id="picture">
+		</div>
+		
+		<div>
+		    <label>Алергени:</label>
+		    <input type="radio" name="алергени" value="yes" id="yes"/>
+			<label for="yes">Да</label>
+			
+			<input type="radio" name="алергени" value="no" id="no"/>
+			<label for="no">Не</label>
+		</div>
+		
+		<div>
+		    <label for="number">Моля изберете време за приготвяне в минути:</label><br/>
+			<input type="number" name="number" id="number"/>
+		</div>
+		
+		<br/>
+		
+		<div>
+		    <input type="submit" value="Качване" />
+		</div>
+		
+	  </fieldset>  
+	  
+	  
+	</form>
+
+</body>
+</html>

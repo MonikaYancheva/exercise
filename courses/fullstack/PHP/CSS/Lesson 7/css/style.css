@@ -1,0 +1,15 @@
+@import url("reset.css");
+img {
+	display: block;
+	width: 300px;
+	margin: 0 auto;
+	border: 1px solid blue;
+
+}
+
+p {
+	width: 240px;
+	margin: 0 auto;
+	border: 1px solid black;
+	padding: 30px;
+}

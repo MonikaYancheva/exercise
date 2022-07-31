@@ -1,0 +1,15 @@
+.idea/
+**/.idea
+
+.vscode/
+**/.vscode
+
+.history/
+.cache/
+dist/
+target/
+build/
+
+**/node_modules
+
+.DS_Store

@@ -1,0 +1,15 @@
+.container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+article body {
+    position:absolute ;
+	
+}
+
+fixed-arrow {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
