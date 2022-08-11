@@ -129,6 +129,53 @@ Math.floor(x)	Returns x rounded down to its nearest integer
 Math.trunc(x)	Returns the integer part of x (new in ES6)
 
 ```
+>## Conditional statements
+
+
+* If...Else
+
+-The if statement executes a statement if a specified condition is truthy. If the condition is falsy, another statement in the optional else clause will be executed.
+
+``` js
+function checkValue(a, b) {
+  if (a === 1) {
+    if (b === 2) {
+      console.log("a is 1 and b is 2");
+    } else {
+      console.log("a is not 1");
+    }
+  }
+}
+
+```
+* Switch
+  
+  ``` js
+  const day = 3;
+switch (day) { 
+  case 1:
+    console.log("Monday");
+  case 2:
+    console.log("Tuesday");
+  case 3:
+    console.log("Wednesday");
+    break;
+  case 4:
+    console.log("Thursday");
+    break;    
+  case 5:
+    console.log("Friday");
+    break;   
+  case 6:
+    console.log("Saturday");
+    break; 
+  case 7:
+    console.log("Sunday"); 
+    break;
+  default:
+      console.log("I don't know that!")     
+  }
+  ```
 
 
 
