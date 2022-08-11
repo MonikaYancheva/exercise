@@ -40,3 +40,5 @@ switch (day) {
     default:
       console.log("I don't know that!") 
     }
+
+    
