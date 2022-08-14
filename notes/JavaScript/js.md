@@ -155,8 +155,10 @@ function checkValue(a, b) {
 switch (day) { 
   case 1:
     console.log("Monday");
+     break;
   case 2:
     console.log("Tuesday");
+     break;
   case 3:
     console.log("Wednesday");
     break;
@@ -204,7 +206,42 @@ Name	Description
 `push()`	Adds new elements to the end of an array, and returns the new length
 
 
+>## The JavaScripty Array Object
+The Array object is used to store multiple values in a single variable:
 
+const cars = ["Saab", "Volvo", "BMW"];
+
+Array indexes are zero-based: The first element in the array is 0, the second is 1,and so on.
+
+>## Nested JavaScript Objects and Arrays
+
+```js
+<script>
+let x = "";
+const myObj = {
+  name: "John",
+  age: 30,
+  cars: [
+    {name:"Ford", models:["Fiesta", "Focus", "Mustang"]},
+    {name:"BMW", models:["320", "X3", "X5"]},
+    {name:"Fiat", models:["500", "Panda"]}
+  ]
+}
+
+for (let i in myObj.cars) {
+  x += "<h2>" + myObj.cars[i].name + "</h2>";
+  for (let j in myObj.cars[i].models) {
+    x += myObj.cars[i].models[j] + "<br>";
+  }
+}
+
+document.getElementById("demo").innerHTML = x;
+</script>
+
+</body>
+</html>
+
+```
 
 <br/><br/><br/><br/>
 
