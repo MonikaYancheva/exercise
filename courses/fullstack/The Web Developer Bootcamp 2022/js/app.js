@@ -97,3 +97,22 @@ function rant(message) {
   for (let i = 0; i < 3; i++) {
 console.log(result);
         }
+
+        const hen = {
+    name:"Helen",
+    eggCount:0,
+    layAnEgg(){
+        this.eggCount +=1;
+        return "EGG";
+    
+    }
+}
+
+const square = {
+    area(side) {
+      return side * side;
+    },
+    perimeter(side) {
+      return side * 4;
+    },
+};

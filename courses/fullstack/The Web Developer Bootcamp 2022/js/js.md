@@ -228,17 +228,124 @@ function capitalize (string) {
 }
  js
 
+ ## SCOPE
+
+ The scope is the current context of execution in which values and expressions are "visible" or can be referenced. If a variable or expression is not in the current scope, it will not be available for use. Scopes can also be layered in a hierarchy, so that child scopes have access to parent scopes, but not vice versa.
+
+JavaScript has the following kinds of scopes:
+
+Global scope: The default scope for all code running in script mode.
+Module scope: The scope for code running in module mode.
+Function scope: The scope created with a function.
+In addition, variables declared with let or const can belong to an additional scope:
+
+Block scope: The scope created with a pair of curly braces (a block).
+A function creates a scope, so that (for example) a variable defined exclusively within the function cannot be accessed from outside the function or within other functions. For instance, the following is invalid:
+
+~~~ js
+
+function exampleFunction() {
+  const x = "declared inside function";  // x can only be used in exampleFunction
+  console.log("Inside function");
+  console.log(x);
+}
+
+console.log(x);  // Causes error
 
 
-hhhhhk
-uygjgj
-kjhgjhgjh
-juy
-jghghhg
-ghghghg
-hjhkhk
-jfgfghfghfjhfghfhg
-hjgjgjhjjgj
+const x = "declared outside function";
+
+exampleFunction();
+
+function exampleFunction() {
+  console.log("Inside function");
+  console.log(x);
+}
+
+console.log("Outside function");
+console.log(x);
+js
+ 
+
+ ##EXERCISES
+
+Define an object called square, which will hold methods that have to do with the geometry of squares. It should contain two methods, area and perimeter 
+
+area should accept the length of a side (all sides are the same in a square) and then return the side squared. 
+
+perimeter should accept the length of a side and return that side multiplied by 4.
+
+square.area(10) //100
+square.perimeter(10) //40
+  
+
+~~~ js
+  const square = {
+    area(side) {
+      return side * side;
+    },
+    perimeter(side) {
+      return side * 4;
+    },
+};
+js
+
+## Egg Laying Exercise
+Define an object called hen.  It should have three properties:
+
+name should be set to 'Helen'
+
+eggCount should be set to 0
+
+layAnEgg should be a method which increments the value of eggCount by 1 and returns the string "EGG".  You'll need to use this.
+ 
+~~~ js
+
+  const hen = {
+    name:"Helen",
+    eggCount:0,
+    layAnEgg(){
+        this.eggCount +=1;
+        return "EGG";
+    
+    }
+}
+ js
+
+ ## try...catch
+
+     the try...catch statement is comprised of a try block and either a catch block, a finally block, or both. The code in the try block is executed first, and if it throws an exception, the code in the catch block will be executed. The code in the finally block will always be executed before control flow exits the entire construct.
+
+ ~~~ js
+       try {
+  nonExistentFunction();
+} catch (error) {
+  console.error(error);
+  // expected output: ReferenceError: nonExistentFunction is not defined
+  // Note - error messages will vary depending on browser
+}
+
+ js
+
+
+
+ ### JavaScript try and catch
+The try statement allows you to define a block of code to be tested for errors while it is being executed.
+
+The catch statement allows you to define a block of code to be executed, if an error occurs in the try block.
+
+The JavaScript statements try and catch come in pairs:
+
+~~~ js
+try {
+  Block of code to try
+}
+catch(err) {
+  Block of code to handle errors
+}
+js
+
+
 
 Footer
 © 2022 GitHub, Inc.
