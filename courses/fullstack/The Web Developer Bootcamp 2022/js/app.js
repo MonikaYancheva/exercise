@@ -46,11 +46,8 @@ switch (day) {
 
   console.log("'name'  + 'is' + 'age2' + 'years old'"  );
 
-  var name = "John"
-var age = 43
-
-console.log(name + " is "  + age + " years old.")
-console.log(name + ` is 
+console.log(name2 + " is "  + age + " years old.")
+console.log(name2 + ` is 
 
  + age +  years old.`)
 
@@ -58,7 +55,7 @@ function sum(a, b) {
 	return a + b
 }
 
-console.log(`"${name}" is ${age} years old.
+console.log(`"${name2s}" is ${age} years old.
 		${6 + 9} 
 sum 5 + 2 = ${sum(5, 2)}.`)
 
@@ -115,4 +112,29 @@ const square = {
     perimeter(side) {
       return side * 4;
     },
+};
+
+const fullNames = [{first: 'Albus', last: 'Dumbledore'}, {first: 'Harry', last: 'Potter'}, {first: 'Hermione', last: 'Granger'}, {first: 'Ron', last: 'Weasley'}, {first: 'Rubeus', last: 'Hagrid'}, {first: 'Minerva', last: 'McGonagall'}, {first: 'Severus', last: 'Snape'}];
+
+const firstNames = fullNames.map(function(name){
+return name.first;
+});
+
+const greet = (name) => {
+    return `Hey ${name}!`;
+};
+
+greet("Hagrid");
+greet("Luna");
+
+
+function validUserNames(usernames) {
+  return usernames.filter(function(el) { return el.length < 10 } );
+}
+
+console.log(validUserNames(['mark', 'staceysmom1978', 'q29832128238983', 'carrie98', 'MoanaFan']));
+
+
+function allEvens(arr) {
+return arr.every(val => val % 2 === 0)
 };

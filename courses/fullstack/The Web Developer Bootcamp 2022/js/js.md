@@ -278,8 +278,7 @@ perimeter should accept the length of a side and return that side multiplied by 
 square.area(10) //100
 square.perimeter(10) //40
   
-
-~~~ js
+js
   const square = {
     area(side) {
       return side * side;
@@ -288,7 +287,8 @@ square.perimeter(10) //40
       return side * 4;
     },
 };
-js
+
+
 
 ## Egg Laying Exercise
 Define an object called hen.  It should have three properties:
@@ -298,9 +298,8 @@ name should be set to 'Helen'
 eggCount should be set to 0
 
 layAnEgg should be a method which increments the value of eggCount by 1 and returns the string "EGG".  You'll need to use this.
- 
-~~~ js
 
+```
   const hen = {
     name:"Helen",
     eggCount:0,
@@ -310,13 +309,13 @@ layAnEgg should be a method which increments the value of eggCount by 1 and retu
     
     }
 }
- js
+
 
  ## try...catch
 
      the try...catch statement is comprised of a try block and either a catch block, a finally block, or both. The code in the try block is executed first, and if it throws an exception, the code in the catch block will be executed. The code in the finally block will always be executed before control flow exits the entire construct.
 
- ~~~ js
+  js
        try {
   nonExistentFunction();
 } catch (error) {
@@ -325,7 +324,7 @@ layAnEgg should be a method which increments the value of eggCount by 1 and retu
   // Note - error messages will vary depending on browser
 }
 
- js
+
 
 
 
@@ -345,6 +344,78 @@ catch(err) {
 }
 js
 
+## map() method
+The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
+
+Define a variable named firstNames and assign it to the result of mapping over the existing array, fullNames, so that firstNames contains only the first names of the Harry Potter characters from the fullNames array.
+
+e.g.,
+
+console.log(firstNames); // ['Albus', 'Harry', 'Hermione', 'Ron', 'Rubeus', 'Minerva', 'Severus']
+
+
+Please note:
+
+The fullNames array is an array of objects with each object containing properties for the first and last names of each character. You may need to click the "Reset code" link if you do not see the fullNames array pre-loaded into the exercise's index.js file.
+
+This exercise has been updated, you may see Q&A threads from this lecture that relate to the original exercise which no longer exists. They can be ignored.
+
+```js
+const fullNames = [{first: 'Albus', last: 'Dumbledore'}, {first: 'Harry', last: 'Potter'}, {first: 'Hermione', last: 'Granger'}, {first: 'Ron', last: 'Weasley'}, {first: 'Rubeus', last: 'Hagrid'}, {first: 'Minerva', last: 'McGonagall'}, {first: 'Severus', last: 'Snape'}];
+
+const firstNames = fullNames.map(function(name){
+return name.first;
+})
+
+```
+
+#Write an arrow function expression called greet.  It should accept a single string argument, representing a person's name.  It should return a greeting string as shown below:
+
+greet("Hagrid") //"Hey Hagrid!" 
+greet("Luna") //"Hey Luna!"
+Be sure to use arrow function syntax!
+
+```
+const greet = (name) => {
+    return `Hey ${name}!`;
+};
+
+greet("Hagrid");
+greet("Luna");
+
+
+## The filter() method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
+
+Let's get some practice using the filter method. Write a function called validUserNames that accepts an array of usernames (strings).  It should return a new array, containing only the usernames that are less than 10 characters. For example:
+
+validUserNames(['mark', 'staceysmom1978', 'q29832128238983', 'carrie98', 'MoanaFan']);
+// => ["mark", "carrie98", "MoanaFan"]\
+
+or if you want to get fancy with an arrow function:
+
+const validUserNames = usernames => // your code here;
+
+
+
+```
+
+function validUserNames(usernames) {
+  return usernames.filter(function(el) { return el.length < 10 } );
+}
+
+console.log(validUserNames(['mark', 'staceysmom1978', 'q29832128238983', 'carrie98', 'MoanaFan']));
+
+The every() method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
+
+Define a function called allEvens that accepts a single array of numbers.  If the array contains all even numbers, return true.  Otherwise, return false.  Use some or every to help you do this!  (only one of them is actually useful here)
+
+allEvens([2,4,6,8]) //true
+allEvens([1,4,6,8]) //false
+allEvens([1,2,3]) //false
+
+function allEvens(arr) {
+return arr.every(val => val % 2 === 0)
+};
 
 
 Footer
