@@ -418,6 +418,48 @@ return arr.every(val => val % 2 === 0)
 };
 
 
+## The reduce() method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
+
+The first time that the callback is run there is no "return value of the previous calculation". If supplied, an initial value may be used in its place. Otherwise the array element at index 0 is used as the initial value and iteration starts from the next element (index 1 instead of index 0).
+The reducer walks through the array element-by-element, at each step adding the current array value to the result from the previous step (this result is the running sum of all the previous steps) — until there are no more elements to add.
+The reduce() method takes two arguments: a callback function and an optional initial value. If an initial value is provided, reduce() calls the "reducer" callback function on each element in the array, in order. If no initial value is provided, reduce() calls the callback function on each element in the array after the first element.
+
+reduce() returns the value that is returned from the callback function on the final iteration of the array.
+
+reduce() is a central concept in functional programming, where it's not possible to mutate any value, so in order to accumulate all values in an array, one must return a new accumulator value on every iteration. This convention propagates to JavaScript's reduce(): you should use spreading or other copying methods where possible to create new arrays and objects as the accumulator, rather than mutating the existing one. If you decided to mutate the accumulator instead of copying it, remember to still return the modified object in the callback, or the next iteration will receive undefined.
+
+Perhaps the easiest-to-understand case for reduce() is to return the sum of all the elements in an array:
+
+~~~js
+
+var myArray = [1,3,6,7,8];
+
+var sum = 
+myArray.reduce((sum, currentMyArrayItem) => {
+  
+
+  console.log (sum)
+  
+  var result = sum + currentMyArrayItem  ;
+  
+  return result;
+  
+}, 0)
+
+
+const array1 = [1, 2, 3, 4];
+
+// 0 + 1 + 2 + 3 + 4
+const initialValue = 0;
+const sumWithInitial = array1.reduce(
+  (previousValue, currentValue) => previousValue + currentValue,
+  initialValue
+);
+
+console.log(sumWithInitial);
+// expected output: 10
+~~~
+
 Footer
 © 2022 GitHub, Inc.
 Footer navigation
