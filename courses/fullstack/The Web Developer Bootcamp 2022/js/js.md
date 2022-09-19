@@ -514,6 +514,17 @@ arr2.push(4);
 # Spread in object literals
 Shallow-cloning (excluding prototype) or merging of objects is possible using a shorter syntax than Object.assign().
 
+~~~js
+const obj1 = { foo: 'bar', x: 42 };
+const obj2 = { foo: 'baz', y: 13 };
+
+const clonedObj = { ...obj1 };
+// Object { foo: "bar", x: 42 }
+
+const mergedObj = { ...obj1, ...obj2 };
+// Object { foo: "baz", x: 42, y: 13 }
+~~~
+
 Footer
 © 2022 GitHub, Inc.
 Footer navigation
