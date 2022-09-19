@@ -460,6 +460,60 @@ console.log(sumWithInitial);
 // expected output: 10
 ~~~
 
+
+## Default function parameters allow named parameters to be initialized with default values if no value or undefined is passed.
+
+~~~js
+function greet(name, greeting, message = `${greeting} ${name}`) {
+  return [name, greeting, message];
+}
+
+greet("David", "Hi"); // ["David", "Hi", "Hi David"]
+greet("David", "Hi", "Happy Birthday!"); // ["David", "Hi", "Happy Birthday!"]
+~~~
+
+
+# SPREAD
+Spread syntax (...) allows an iterable, such as an array or string, to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected. In an object literal, the spread syntax enumerates the properties of an object and adds the key-value pairs to the object being created.
+
+Spread syntax looks exactly like rest syntax. In a way, spread syntax is the opposite of rest syntax. Spread syntax "expands" an array into its elements, while rest syntax collects multiple elements and "condenses" them into a single element. See rest parameters and rest property.
+Spread syntax can be used when all elements from an object or array need to be included in a new array or object, or should be applied one-by-one in a function call's arguments list. There are three distinct places that accept the spread syntax:
+
+# Spread in function calls!!!
+
+~~~js
+
+function myFunction(x, y, z) {}
+const args = [0, 1, 2];
+myFunction(...args);
+~~~
+
+# Spread in array literals
+A more powerful array literal
+Without spread syntax, to create a new array using an existing array as one part of it, the array literal syntax is no longer sufficient and imperative code must be used instead using a combination of push(), splice(), concat(), etc. With spread syntax this becomes much more succinct:
+
+~~~js
+const parts = ['shoulders', 'knees'];
+const lyrics = ['head', ...parts, 'and', 'toes'];
+//  ["head", "shoulders", "knees", "and", "toes"]
+~~~
+
+Just like spread for argument lists, ... can be used anywhere in the array literal, and may be used more than once.
+
+## Copy an array
+
+~~~js
+const arr = [1, 2, 3];
+const arr2 = [...arr]; // like arr.slice()
+
+arr2.push(4);
+//  arr2 becomes [1, 2, 3, 4]
+//  arr remains unaffected
+~~~
+
+# Spread in object literals
+Shallow-cloning (excluding prototype) or merging of objects is possible using a shorter syntax than Object.assign().
+
 Footer
 © 2022 GitHub, Inc.
 Footer navigation

@@ -138,3 +138,18 @@ console.log(validUserNames(['mark', 'staceysmom1978', 'q29832128238983', 'carrie
 function allEvens(arr) {
 return arr.every(val => val % 2 === 0)
 };
+
+
+var myArray = [1,3,6,7,8];
+
+var sum = 
+myArray.reduce((sum, currentMyArrayItem) => {
+  
+
+  console.log (sum)
+  
+  var result = sum + currentMyArrayItem  ;
+  
+  return result;
+  
+}, 0)
