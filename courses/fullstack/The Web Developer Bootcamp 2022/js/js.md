@@ -581,9 +581,9 @@ foo(arg1, arg2, ...correct)
 The difference between rest parameters and the arguments object
 There are three main differences between rest parameters and the arguments object:
 
-The arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort(), map(), forEach() or pop() can be applied on it directly.
-The arguments object has additional functionality specific to itself (like the callee property).
-The ...restParam bundles all the extra parameters into a single array, therefore it does not contain any named argument defined before the ...restParam. Whereas the arguments object contains all of the parameters — including the parameters in the ...restParam array — bundled into one array-like object.
+* The arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort(), map(), forEach() or pop() can be applied on it directly.
+* The arguments object has additional functionality specific to itself (like the callee property).
+* The ...restParam bundles all the extra parameters into a single array, therefore it does not contain any named argument defined before the ...restParam. Whereas the arguments object contains all of the parameters — including the parameters in the ...restParam array — bundled into one array-like object.
 From arguments to an array
 Rest parameters were introduced to reduce the boilerplate code that was commonly used for converting a set of arguments to an array.
 
@@ -703,5 +703,453 @@ To use Array methods on the arguments object, it must be converted to a real arr
 }
 console.log(sortArguments(5, 3, 7, 1)); // 1, 3, 5, 7
 ~~~
+
+
+~~~js
+function raceResult (gold,silver,...everyoneElse){
+  console.log("Gold medal goes to: ${gold}")
+  console.log("Silver medal goes to: ${silver}")
+  console.log("And thanks to everyone else: ${everyoneElse}")
+} 
+return raceResults("Tamy","Tod","Nina","Regina","Tomas")
+
+
+~~~
+
+# DESTRUCTURING
+
+~~~js
+const [, secondElement] = [1, 2, 3] // 2 
+
+//Can be also used with a DEFAULT value:
+const { name: newNameVar, position, age = 55 } = user
+~~~
+
+## Destructuring assignment
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+~~~js
+
+let a, b, rest;
+[a, b] = [10, 20];
+
+console.log(a);
+// expected output: 10
+
+console.log(b);
+// expected output: 20
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+
+console.log(rest);
+// expected output: Array [30,40,50]
+
+~~~
+
+## Syntax
+
+~~~js
+ const [a, b] = array;
+const [a, , b] = array;
+const [a = aDefault, b] = array;
+const [a, b, ...rest] = array;
+const [a, , b, ...rest] = array;
+const [a, b, ...{ pop, push }] = array;
+const [a, b, ...[c, d]] = array;
+
+const { a, b } = obj;
+const { a: a1, b: b1 } = obj;
+const { a: a1 = aDefault, b = bDefault } = obj;
+const { a, b, ...rest } = obj;
+const { a: a1, b: b1, ...rest } = obj;
+const { [key]: a } = obj;
+
+let a, b, a1, b1, c, d, rest, pop, push;
+[a, b] = array;
+[a, , b] = array;
+[a = aDefault, b] = array;
+[a, b, ...rest] = array;
+[a, , b, ...rest] = array;
+[a, b, ...{ pop, push }] = array;
+[a, b, ...[c, d]] = array;
+
+({ a, b } = obj); // brackets are required
+({ a: a1, b: b1 } = obj);
+({ a: a1 = aDefault, b = bDefault } = obj);
+({ a, b, ...rest } = obj);
+({ a: a1, b: b1, ...rest } = obj);
+~~~
+
+## Description
+
+The object and array literal expressions provide an easy way to create ad hoc packages of data.
+
+~~~js
+const x = [1, 2, 3, 4, 5];
+~~~
+
+The destructuring assignment uses similar syntax, but on the left-hand side of the assignment to define what values to unpack from the sourced variable.
+
+~~~js
+const x = [1, 2, 3, 4, 5];
+const [y, z] = x;
+console.log(y); // 1
+console.log(z); // 2
+~~~
+
+## Default value
+
+Each destructured property can have a default value. The default value is used when the property is not present, or has value undefined. It is not used if the property has value null.
+
+~~~js
+
+const [a = 1] = []; // a is 1
+const { b = 2 } = { b: undefined }; // b is 2
+const { c = 2 } = { c: null }; // c is null
+~~~
+
+The default value can be any expression. It will only be evaluated when necessary.
+
+~~~js
+ const { b = console.log("hey") } = { b: 2 };
+// Does not log anything, because `b` is defined and there's no need
+// to evaluate the default value.
+~~~
+
+
+## Array destructuring
+
+~~~js
+const foo = ['one', 'two', 'three'];
+
+const [red, yellow, green] = foo;
+console.log(red); // "one"
+console.log(yellow); // "two"
+console.log(green); // "three"
+~~~
+
+Destructuring with more elements than the source
+In an array destructuring from an array of length N specified on the right-hand side of the assignment, if the number of variables specified on the left-hand side of the assignment is greater than N, only the first N variables are assigned values. The values of the remaining variables will be undefined.
+
+~~~js
+const foo = ['one', 'two'];
+
+const [red, yellow, green, blue] = foo;
+console.log(red); // "one"
+console.log(yellow); // "two"
+console.log(green); // undefined
+console.log(blue);  //undefined
+~~~
+
+## Object destructuring
+
+~~~js
+const user = {
+  id: 42,
+  isVerified: true,
+};
+
+const { id, isVerified } = user;
+
+console.log(id); // 42
+console.log(isVerified); // true
+~~~
+
+Assigning to new variable names
+A property can be unpacked from an object and assigned to a variable with a different name than the object property.
+
+~~~js
+const o = { p: 42, q: true };
+const { p: foo, q: bar } = o;
+
+console.log(foo); // 42
+console.log(bar); // true
+~~~
+
+Here, for example, const { p: foo } = o takes from the object o the property named p and assigns it to a local variable named foo.
+
+Assigning to new variable names and providing default values
+A property can be both
+
+Unpacked from an object and assigned to a variable with a different name.
+Assigned a default value in case the unpacked value is undefined.
+~~~js
+
+const { a: aa = 10, b: bb = 5 } = { a: 3 };
+
+console.log(aa); // 3
+console.log(bb); // 5
+~~~
+
+Unpacking properties from objects passed as a function parameter
+Objects passed into function parameters can also be unpacked into variables, which may then be accessed within the function body. As for object assignment, the destructuring syntax allows for the new variable to have the same name or a different name than the original property, and to assign default values for the case when the original object does not define the property.
+
+Consider this object, which contains information about a user.
+
+~~~js
+const user = {
+  id: 42,
+  displayName: 'jdoe',
+  fullName: {
+    firstName: 'John',
+    lastName: 'Doe',
+  },
+};
+~~~
+
+Here we show how to unpack a property of the passed object into a variable with the same name. The parameter value { id } indicates that the id property of the object passed to the function should be unpacked into a variable with the same name, which can then be used within the function.
+
+~~~js
+function userId({ id }) {
+  return id;
+}
+
+console.log(userId(user)); // 42
+~~~
+
+EXECUTION CONTEXT & CALL STACK
+Every JS code runs in an environment called Execution Context.
+
+By default every code is in the Global (Default) Execution Context (GEC)
+Inside GEC all code that is not wrapped in a function gets executed
+A new function gets its new Execution Context
+Call Stack - a collection of all Execution Contexts, where they pile up for each function call and are removed when the function returns. At the bottom is the GEC.
+
+
+Execution Context Object contains 3 properties:
+Variable Object - contains function arguments, inner variable declarations, function declarations
+Scope chain - contains the current variable objects, as well as variable objects of all its parents
+this keyword/variable - a var that each execution context gets
+
+Execution Context Object PHASES:
+Creation phase:
+creation of the variable object
+the arguments object is created, containing all the arguments passed to the function
+next is HOISTING:
+code is scanned for function declarations and for each one, a property is created in the variable object, pointing to its function, sofunctions are made available before the execution phase starts
+code is scanned for variable declarations and for each a property is created in the variable object and set to undefined, and will be defined in the execution phase
+creation of the scope chain
+determine the value of the this variable
+Execution phase - the code of the function that was generated by the current execution context is ran line by line
+
+Scoping
+Scope - space/environment where a certain variable is declared and can be accessed
+
+Lexical Scoping - scoping is controlled by the placement of functions and blocks in the code
+
+Global scope - outside of any function or block. Variables declared in it are global
+Function / Local scope - each function creates a scope and the variables declared there are only accessible in it
+Block scope - from ES6, blocks {...} create a scope also
+let and const variables (block scoped), declared in a Block scope, are accessible only inside it
+vars (function scoped) though are scoped to the current Function or Global scope
+in strict mode all functions are block scoped too
+
+Scope Chain
+Variable Lookup - if a variable can't be found in the current scope, the JS engine starts looking for it in the parent scope, then its parent scope, and so on (up in the Scope Chain).
+
+
+this keyword
+in a regular function call: points to the global window object
+in a method (fn attached to an object) call:
+regular function - points to the object that is calling the method
+arrow function - points to the upper context
+In a Method Owner -> Object(Which invoked method)
+Alone -> Global Object
+In a function (Default Mode) -> Global Object
+In a function (Strict Mode) -> undefined
+In an event -> the target of the event
+
+~~~js
+const obj1 = {
+  a: 1,
+  b: this.a,
+  f1() { console.log(this.a, obj1.a, this.b, this) } // 1 1 undefined {...obj1}
+  f2: function() {
+    console.log(this) // { ...obj1 }
+    
+    function f() { console.log(this) } // function declaration
+    f() // it's a regular fn call => Window 
+    
+    const fn = function() {} // function expression
+  },
+  f3: () => { console.log(this) }, // Window
+}
+
+// method borrowing:
+var obj2 = { a: 2 }
+obj2.f1 = obj1.f1
+obj2.f1() // 2 1 undefined {..obj2s}
+~~~
+this is not assigned a value until the function where it is defined is called
+A constructor is a fn that allows us to create a blueprint, based on which we can create instances using the new keyword. In the constructor the this keyword refers to the newly created object.
+~~~js
+// construction function should start with a capital letter
+const SomeConstructorFn = function (firstProp, secondProp) {
+  this.firstProp = firstProp
+  this.secondProp = secondProp
+}
+
+const obj1 = new SomeConstructorFn('first', 2) // => obj1 { firstProp: "first", secondProp: 2 }
+eyeballing this
+
+~~~
+
+# Primitive and reference types
+
+~~~js
+// these are primitive types too:
+typeof undefined // undefined
+typeof null // object (NB! should be checked with `someVar === null` instead)
+
+typeof someFunction // function
+
+typeof someArray // object
+typeof someObject // object
+// BETTER:
+instanceof Array // true
+instanceof Object // true
+instanceof Function // true
+// since all the reference types are children of Object, hence Array/Function instanceof Object -> true
+
+~~~
+
+
+De-referencing an object - when we remove all pointers to a memory allocated space for an object, then the JS engine will clean it from the memory (garbage collect). This can be done by obj1 = null.
+
+Wrapper types for primitive values - JS uses them to allow us to call methods on them like someString.substring(). Adds the wrapper when it notices the method call and destroys it immediately, that's why someString instanceof String === false
+
+
+# Equality (===)
+== - converts the type of the right part to the left and then compares
+
+=== compares the value and the type
+
+# VARS
+
+* let, const -> scoped in the current context (block-scoped variables), unlike var
+* var variables can be redeclared multiple times without causing an error, unlike let and const; they have global and function scopes
+
+# FUNCTIONS
+
+There are 2 ways to define them:
+
+* declaration - function a() {...} -> hoisting (js engine pushes it to the top of the scope)
+* expression - const a = function() {...} -> no hoisting because the js engine doesn't know the name of the function ahead of time
+> arguments - stores all passed params even if they are not declared
+
+> someFunction.length - returns the number of named params
+
+* call() - someFunc.call(objectToPassToThis, ...arguments), no params -> passes the global scope to this. Allows a function to be defined outside of the objects that will invoke it
+* apply() - someFunc.call(objectToPassToThis, [...arguments]) - same as call but the only difference is that it accepts an array of arguments instead of passing them one by one
+* bind() - const boundFn = fn.bind(obj1, ...args) - returns a function in which this = obj1; args could also be passed to the boundFn
+
+# ARROW FUNCTIONS
+
+anonymous function assigned to a variable
+
+They don't have their own context (this points to the upper enclosing context).
+A function becomes a part of the global window context, so with an arrow function this points to it.
+
+Arrow functions handle this in a different way from regular functions:
+
+* Arrow function - this represents the object that defined the arrow function.
+* In regular functions this keyword represented the object that called the function (the executer), which could be the window, the document, or whatever.
+
+In short , in arrow function this represents the definition context while in regular function this represents the execution context.
+
+~~~js
+const obj = {
+  props: ['prop1', 'prop2'], 
+  
+  printProps: function() {
+    console.log(this) // this -> obj (since the function is part of the object)
+    
+    setTimeout(function() { 
+      console.log(this) // this -> window
+    }, 1000)
+
+    setTimeout(() => console.log(this), 2000) // this -> obj
+  },
+
+  printPropsA: () => {
+    console.log(this) // this -> window
+    
+    setTimeout(function() { 
+      console.log(this) // this -> window
+    }, 1000)
+
+    setTimeout(() => console.log(this), 2000) // this -> window
+  }
+}
+~~~
+
+> Arrow functions CANNOT be used as constructors : This is because of how Arrow Functions use the this keyword. JS will simply throw an error if it sees an arrow function being invoked as a "constructor".
+
+~~~js
+function personCreator(name) {
+   this.name = name
+}
+const person1 = new personCreator('John') // personCreator {name: 'John'}
+~~~
+
+The new keyword do some of its magic and makes the this keyword that is inside of personCreator to be initially an empty object instead of referencing the global object. After that, a new property called name is created inside that empty this object, and its value will be 'John'. At the end, the this object is returned.
+
+As we see, the new keyword changed the value of this from referencing the global object to now be an empty object {}.
+
+Arrow functions do not allow their this object to be modified. Their this object is always locked to the value of the this of the scope where they were statically created. This is called Static Lexical Scope. That is why you cannot do operations like bind, apply, or call with arrow functions.
+
+A lexical scope is just the area where a function is created.
+
+* this keywords specifics from above
+* Also no arguments keyword
+* No new keyword
+  
+Arrow functions don't have their own this or arguments binding. Instead, those identifiers are resolved in the lexical scope like any other variable. That means that inside an arrow function, this and arguments refer to the values of this and arguments in the environment the arrow function is defined
+
+# REGULAR (R) VS ARROW (A) FUNCTIONS
+
+* this and arguments:
+  
+    * no this and arguments binding in A - they are resolved in the lexical scope like any other variable (the env in which the A is defined). No matter how or where being executed, this value inside of an arrow function always equals this value from the outer function.
+   * this in R:
+      * during a simple invocation the value of this equals to the global object (or undefined if the function runs in strict mode)
+      * during a method invocation the value of this is the object owning the method
+      * during an indirect invocation using myFunc.call(thisVal, arg1, ..., argN) or myFunc.apply(thisVal, [arg1, ..., argN]) the value of this equals to the first argument
+      * during a constructor invocation using new keyword this equals to the newly created instance
+* R are constructible and they can be called with the new keyword
+* no duplicate params in A, while R allow it if not in strict mode
+https://dmitripavlutin.com/differences-between-arrow-and-regular-functions/
+
+https://stackoverflow.com/questions/34361379/are-arrow-functions-and-functions-equivalent-interchangeable
+
+
+# OBJECTS
+
+> obj1.hasOwnProperty('prop1') method - check if a property is present and not inherited
+
+> delete obj.prop - removes a property from an object; if no more references to the same property are held, it is eventually released automatically. returns true for all cases except when the property is an own non-configurable property, in which case, false is returned in non-strict mode
+
+> obj1.propertyIsEnumerable('prop1')- not all props are enumerable (get cycled in loops), can be checked with this method
+
+## Accessors
+
+~~~js
+var a = {
+  _name: 'one',
+  _second: 'once',
+  set name(value) { this._name = value },
+  get name() { return this._name }
+}
+
+console.log(a.second) // undefined
+console.log(a._name) // one
+console.log(a.name) // one
+a.name = 'two'
+console.log(a.name) // two
+~~~
+
+> If only a getter is defined, then the prop will be read-only.
+
+
 
 
