@@ -1150,6 +1150,290 @@ console.log(a.name) // two
 
 > If only a getter is defined, then the prop will be read-only.
 
+# DOM (DOCUMENT OBJECT MODEL)
+
+## Document.getElementById()
+
+The Document method getElementById() returns an Element object representing the element whose id property matches the specified string. Since element IDs are required to be unique if specified, they're a useful way to get access to a specific element quickly.
+
+If you need to get access to an element which doesn't have an ID, you can use querySelector() to find the element using any selector.
+
+## Syntax
+
+~~~js
+getElementById(id)
+~~~
+
+## Parameters
+The ID of the element to locate. The ID is case-sensitive string which is unique within the document; only one element may have any given ID.
+
+Return value
+An Element object describing the DOM element object matching the specified ID, or null if no matching element was found in the document.
+
+Examples
+## HTML
+
+~~~html
+<html lang="en">
+  <head>
+    <title>getElementById example</title>
+  </head>
+  <body>
+    <p id="para">Some text here</p>
+    <button onclick="changeColor('blue');">blue</button>
+    <button onclick="changeColor('red');">red</button>
+  </body>
+</html>
+~~~
+
+## JAVASCRIPT
+ ~~~js
+ function changeColor(newColor) {
+  const elem = document.getElementById('para');
+  elem.style.color = newColor;
+}
+ ~~~
+
+ Usage notes
+The capitalization of "Id" in the name of this method must be correct for the code to function; getElementByID() is not valid and will not work, however natural it may seem.
+
+Unlike some other element-lookup methods such as Document.querySelector() and Document.querySelectorAll(), getElementById() is only available as a method of the global document object, and not available as a method on all element objects in the DOM. Because ID values must be unique throughout the entire document, there is no need for "local" versions of the function.
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn</title>
+</head>
+<body>
+    <h1 id="mainheading">I &hearts; unicorns</h1>
+    <img src="https://devsprouthosting.com/images/unicorn.jpg" id="unicorn" alt="unicorn">
+</body>
+</html>
+~~~
+
+~~~js
+const image = document.getElementById ("unicorn");
+const heading = document.getElementById("mainheading");
+~~~
+
+# Document.getElementsByTagName()
+
+The getElementsByTagName method of Document interface returns an HTMLCollection of elements with the given tag name.
+
+The complete document is searched, including the root node. The returned HTMLCollection is live, meaning that it updates itself automatically to stay in sync with the DOM tree without having to call document.getElementsByTagName() again.
+
+## Syntax
+
+~~~js
+getElementsByTagName(name)
+~~~
+
+## Parameters
+~~~js
+name
+~~~
+A string representing the name of the elements. The special string * represents all elements.
+
+Return value
+A live HTMLCollection of found elements in the order they appear in the tree.
+
+
+> Note: The latest W3C specification says returned value is an HTMLCollection; however, this method returns a NodeList in WebKit browsers. See bug 14869 for details.
+
+## Examples
+
+In the following example, getElementsByTagName() starts from a particular parent element and searches top-down recursively through the DOM from that parent element, building a collection of all descendant elements which match the tag name parameter. This demonstrates both document.getElementsByTagName() and the functionally identical Element.getElementsByTagName(), which starts the search at a specific element within the DOM tree.
+
+Clicking the buttons uses getElementsByTagName() to count the descendant paragraph elements of a particular parent (either the document itself or one of two nested <div> elements).
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>getElementsByTagName example</title>
+    <script>
+      function getAllParaElems() {
+        const allParas = document.getElementsByTagName("p");
+        const num = allParas.length;
+        alert(`There are ${num} paragraph in this document`);
+      }
+
+      function div1ParaElems() {
+        const div1 = document.getElementById("div1");
+        const div1Paras = div1.getElementsByTagName("p");
+        const num = div1Paras.length;
+        alert(`There are ${num} paragraph in #div1`);
+      }
+
+      function div2ParaElems() {
+        const div2 = document.getElementById("div2");
+        const div2Paras = div2.getElementsByTagName("p");
+        const num = div2Paras.length;
+        alert(`There are ${num} paragraph in #div2`);
+      }
+    </script>
+  </head>
+  <body style="border: solid green 3px">
+    <p>Some outer text</p>
+    <p>Some outer text</p>
+
+    <div id="div1" style="border: solid blue 3px">
+      <p>Some div1 text</p>
+      <p>Some div1 text</p>
+      <p>Some div1 text</p>
+
+      <div id="div2" style="border: solid red 3px">
+        <p>Some div2 text</p>
+        <p>Some div2 text</p>
+      </div>
+    </div>
+
+    <p>Some outer text</p>
+    <p>Some outer text</p>
+
+    <button onclick="getAllParaElems();">
+      Show all p elements in document
+    </button><br />
+
+    <button onclick="div1ParaElems();">
+      Show all p elements in div1 element
+    </button><br />
+
+    <button onclick="div2ParaElems();">
+      Show all p elements in div2 element
+    </button>
+  </body>
+</html>
+~~~
+
+## Notes
+
+> When called on an HTML document, getElementsByTagName() lower-cases its argument before proceeding. This is undesirable when trying to match camelCase SVG elements in a subtree in an HTML document. document.getElementsByTagNameNS() is useful in that case. See also bug 499656.
+
+> document.getElementsByTagName() is similar to Element.getElementsByTagName(), except that its search encompasses the whole document.
+<hr>
+
+# Document.getElementsByClassName()
+
+The getElementsByClassName method of Document interface returns an array-like object of all child elements which have all of the given class name(s).
+
+When called on the document object, the complete document is searched, including the root node. You may also call getElementsByClassName() on any element; it will return only elements which are descendants of the specified root element with the given class name(s).
+
+> Warning: This is a live HTMLCollection. Changes in the DOM will reflect in the array as the changes occur. If an element selected by this array no longer qualifies for the selector, it will automatically be removed. Be aware of this for iteration purposes.
+
+## Syntax
+
+~~~js
+getElementsByClassName(names)
+~~~
+
+## Parameters
+
+### names
+
+A string representing the class name(s) to match; multiple class names are separated by whitespace.
+
+Return value
+A live HTMLCollection of found elements.
+
+Examples
+
+Get all elements that have a class of 'test':
+
+~~~js
+document.getElementsByClassName('test')
+~~~
+
+Get all elements that have both the 'red' and 'test' classes:
+~~~js
+document.getElementsByClassName('red test')
+~~~
+
+Get all elements that have a class of 'test', inside of an element that has the ID of 'main':
+~~~js
+document.getElementById('main').getElementsByClassName('test')
+~~~
+
+Get the first element with a class of 'test', or undefined if there is no matching element:
+~~~js
+document.getElementsByClassName('test')[0]
+~~~
+We can also use methods of Array.prototype on any HTMLCollection by passing the HTMLCollection as the method's this value. Here we'll find all div elements that have a class of 'test':
+~~~js
+const testElements = document.getElementsByClassName('test');
+const testDivs = Array.prototype.filter.call(
+  testElements,
+  (testElement) => testElement.nodeName === 'DIV',
+);
+~~~
+
+Get the first element whose class is 'test'
+This is the most commonly used method of operation.
+~~~html
+<html lang="en">
+  <body>
+    <div id="parent-id">
+      <p>hello world 1</p>
+      <p class="test">hello world 2</p>
+      <p>hello world 3</p>
+      <p>hello world 4</p>
+    </div>
+
+    <script>
+      const parentDOM = document.getElementById("parent-id");
+
+      const test = parentDOM.getElementsByClassName("test"); // a list of matching elements, *not* the element itself
+      console.log(test); // HTMLCollection[1]
+
+      const testTarget = parentDOM.getElementsByClassName("test")[0]; // the first element, as we wanted
+      console.log(testTarget); // <p class="test">hello world 2</p>
+    </script>
+  </body>
+</html>
+~~~
+## Multiple Classes Example
+document.getElementsByClassName works very similarly to document.querySelector and document.querySelectorAll. Only elements with ALL of the classNames specified are selected.
+
+## HTML
+
+~~~html
+<span class="orange fruit">Orange Fruit</span>
+<span class="orange juice">Orange Juice</span>
+<span class="apple juice">Apple Juice</span>
+<span class="foo bar">Something Random</span>
+<textarea id="resultArea" style="width:98%;height:7em"></textarea>
+~~~
+
+## JAVASCRIPT
+
+~~~js
+// getElementsByClassName only selects elements that have both given classes
+const allOrangeJuiceByClass = document.getElementsByClassName('orange juice');
+let result = "document.getElementsByClassName('orange juice')";
+for (let i = 0; i < allOrangeJuiceByClass.length; i++) {
+  result += `\n  ${allOrangeJuiceByClass[i].textContent}`;
+}
+
+// querySelector only selects full complete matches
+const allOrangeJuiceQuery = document.querySelectorAll('.orange.juice');
+result += "\n\ndocument.querySelectorAll('.orange.juice')";
+for (let i = 0; i < allOrangeJuiceQuery.length; i++) {
+  result += `\n  ${allOrangeJuiceQuery[i].textContent}`;
+}
+
+document.getElementById("resultArea").value = result;
+~~~
+
+
+
+
+
+
 
 
 
