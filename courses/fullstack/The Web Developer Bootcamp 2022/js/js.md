@@ -1500,6 +1500,136 @@ const el = document.querySelector("div.user-panel:not(.main) input[name='login']
 ~~~
 This will select an input with a parent div with the user-panel class but not the main class.
 
+# Document.querySelectorAll()
+
+The Document method querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors.
+
+## Syntax
+
+~~~js
+querySelectorAll(selectors)
+~~~
+
+## Parameters
+selectors
+A string containing one or more selectors to match against. This string must be a valid CSS selector string; if it's not, a SyntaxError exception is thrown. See Locating DOM elements using selectors for more information about using selectors to identify elements. Multiple selectors may be specified by separating them using commas.
+
+> Note: Characters which are not part of standard CSS syntax must be escaped using a backslash character. Since JavaScript also uses backslash escaping, special care must be taken when writing string literals using these characters. See Escaping special characters for more information.
+
+## Return value
+A non-live NodeList containing one Element object for each element that matches at least one of the specified selectors or an empty NodeList in case of no matches.
+>Note: If the specified selectors include a CSS pseudo-element, the returned list is always empty.
+
+## Examples
+Obtaining a list of matches
+To obtain a NodeList of all of the <p> elements in the document:
+~~~js
+const matches = document.querySelectorAll("p");
+~~~
+
+This example returns a list of all <div> elements within the document with a class of either note or alert:
+
+Here, we get a list of <p> elements whose immediate parent element is a <div> with the class highlighted and which are located inside a container whose ID is test.
+
+~~~js
+const container = document.querySelector("#test");
+const matches = container.querySelectorAll("div.highlighted > p");
+~~~
+This example uses an attribute selector to return a list of the <iframe> elements in the document that contain an attribute named data-src:
+~~~js
+const matches = document.querySelectorAll("iframe[data-src]");
+~~~
+
+Here, an attribute selector is used to return a list of the list items contained within a list whose ID is userlist which have a data-active attribute whose value is 1:
+~~~js
+const container = document.querySelector("#userlist");
+const matches = container.querySelectorAll("li[data-active='1']");
+~~~
+
+## Accessing the matches
+Once the NodeList of matching elements is returned, you can examine it just like any array. If the array is empty (that is, its length property is 0), then no matches were found.
+
+Otherwise, you can use standard array notation to access the contents of the list. You can use any common looping statement, such as:
+
+~~~js
+const highlightedItems = userList.querySelectorAll(".highlighted");
+
+highlightedItems.forEach((userItem) => {
+  deleteUser(userItem);
+});
+~~~
+
+## User notes
+querySelectorAll() behaves differently than most common JavaScript DOM libraries, which might lead to unexpected results.
+
+## HTML
+
+~~~html
+<div class="outer">
+  <div class="select">
+    <div class="inner"></div>
+  </div>
+</div>
+~~~
+
+## JAVASCRIPT
+
+~~~js
+const select = document.querySelector('.select');
+const inner = select.querySelectorAll('.outer .inner');
+inner.length; // 1, not 0!
+~~~
+
+In this example, when selecting .outer .inner in the context of the <div> with the class select, the element with the class .inner is still found, even though .outer is not a descendant of the base element on which the search is performed (.select). By default, querySelectorAll() only verifies that the last element in the selector is within the search scope.
+The :scope pseudo-class restores the expected behavior, only matching selectors on descendants of the base element:
+~~~js
+const select = document.querySelector('.select');
+const inner = select.querySelectorAll(':scope .outer .inner');
+inner.length; // 0
+~~~
+
+querySelector Practice
+I've provided you with some simple markup in index.html.  Your task is to use querySelector and querySelectorAll to select some of those elements.
+
+Select all elements that have the class of "done" and save them in a variable called doneTodos.
+
+Select the one checkbox and save it in a variable called checkbox. Be careful, there is more than one input element on the page! You'll need to select using the type attribute. (if you can't remember the css attribute selector...google it! That's what I would do!)
+
+Write your code in app.js.  Please do not change any of the elements in index.html
+
+~~~html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Todos</title>
+</head>
+
+<body>
+    <h1>Garden Todos</h1>
+    <input type="text" placeholder="New Todo">
+    <ul>
+        <li>Start Seedlings</li>
+        <li class="done">Deadhead Zinnias</li>
+        <li class="done">Water Tomatoes</li>
+        <li class="done">Harvest Potatoes</li>
+        <li>Prune Roses</li>
+    </ul>
+    <label>Delete All</label>
+    <input type="checkbox" id="scales" name="scales" checked>
+
+</body>
+
+</html>
+~~~
+
+~~~js
+const doneTodos = document.querySelectorAll(".done");
+const checkbox = document.querySelector("input[type=checkbox]");
+~~~
+
+
+
 
 
 
