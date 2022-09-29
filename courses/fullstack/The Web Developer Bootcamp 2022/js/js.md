@@ -360,34 +360,35 @@ The fullNames array is an array of objects with each object containing propertie
 
 This exercise has been updated, you may see Q&A threads from this lecture that relate to the original exercise which no longer exists. They can be ignored.
 
-```js
+~~~js
 const fullNames = [{first: 'Albus', last: 'Dumbledore'}, {first: 'Harry', last: 'Potter'}, {first: 'Hermione', last: 'Granger'}, {first: 'Ron', last: 'Weasley'}, {first: 'Rubeus', last: 'Hagrid'}, {first: 'Minerva', last: 'McGonagall'}, {first: 'Severus', last: 'Snape'}];
 
 const firstNames = fullNames.map(function(name){
 return name.first;
 })
 
-```
+~~~
 
-#Write an arrow function expression called greet.  It should accept a single string argument, representing a person's name.  It should return a greeting string as shown below:
-
+# Write an arrow function expression called greet.  It should accept a single string argument, representing a person's name.  It should return a greeting string as shown below:
+~~~js
 greet("Hagrid") //"Hey Hagrid!" 
 greet("Luna") //"Hey Luna!"
 Be sure to use arrow function syntax!
 
-```
+
 const greet = (name) => {
     return `Hey ${name}!`;
 };
 
 greet("Hagrid");
 greet("Luna");
+~~~
 
 
-## The filter() method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
+## The `filter()` method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
 
 Let's get some practice using the filter method. Write a function called validUserNames that accepts an array of usernames (strings).  It should return a new array, containing only the usernames that are less than 10 characters. For example:
-
+~~~js
 validUserNames(['mark', 'staceysmom1978', 'q29832128238983', 'carrie98', 'MoanaFan']);
 // => ["mark", "carrie98", "MoanaFan"]\
 
@@ -397,18 +398,19 @@ const validUserNames = usernames => // your code here;
 
 
 
-```
+
 
 function validUserNames(usernames) {
   return usernames.filter(function(el) { return el.length < 10 } );
 }
 
 console.log(validUserNames(['mark', 'staceysmom1978', 'q29832128238983', 'carrie98', 'MoanaFan']));
+~~~
 
 The every() method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
 
 Define a function called allEvens that accepts a single array of numbers.  If the array contains all even numbers, return true.  Otherwise, return false.  Use some or every to help you do this!  (only one of them is actually useful here)
-
+~~~js
 allEvens([2,4,6,8]) //true
 allEvens([1,4,6,8]) //false
 allEvens([1,2,3]) //false
@@ -416,19 +418,18 @@ allEvens([1,2,3]) //false
 function allEvens(arr) {
 return arr.every(val => val % 2 === 0)
 };
+~~~
 
-
-## The reduce() method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
+## The `reduce()` method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
 
 The first time that the callback is run there is no "return value of the previous calculation". If supplied, an initial value may be used in its place. Otherwise the array element at index 0 is used as the initial value and iteration starts from the next element (index 1 instead of index 0).
 The reducer walks through the array element-by-element, at each step adding the current array value to the result from the previous step (this result is the running sum of all the previous steps) — until there are no more elements to add.
-The reduce() method takes two arguments: a callback function and an optional initial value. If an initial value is provided, reduce() calls the "reducer" callback function on each element in the array, in order. If no initial value is provided, reduce() calls the callback function on each element in the array after the first element.
+The `reduce()` method takes two arguments: a callback function and an optional initial value. If an initial value is provided, `reduce()` calls the "reducer" callback function on each element in the array, in order. If no initial value is provided, `reduce()` calls the callback function on each element in the array after the first element.
+ returns the value that is returned from the callback function on the final iteration of the array.
 
-reduce() returns the value that is returned from the callback function on the final iteration of the array.
+`reduce()` is a central concept in functional programming, where it's not possible to mutate any value, so in order to accumulate all values in an array, one must return a new accumulator value on every iteration. This convention propagates to JavaScript's `reduce()`: you should use spreading or other copying methods where possible to create new arrays and objects as the accumulator, rather than mutating the existing one. If you decided to mutate the accumulator instead of copying it, remember to still return the modified object in the callback, or the next iteration will receive undefined.
 
-reduce() is a central concept in functional programming, where it's not possible to mutate any value, so in order to accumulate all values in an array, one must return a new accumulator value on every iteration. This convention propagates to JavaScript's reduce(): you should use spreading or other copying methods where possible to create new arrays and objects as the accumulator, rather than mutating the existing one. If you decided to mutate the accumulator instead of copying it, remember to still return the modified object in the callback, or the next iteration will receive undefined.
-
-Perhaps the easiest-to-understand case for reduce() is to return the sum of all the elements in an array:
+Perhaps the easiest-to-understand case for `reduce()` is to return the sum of all the elements in an array:
 
 ~~~js
 
@@ -474,7 +475,7 @@ greet("David", "Hi", "Happy Birthday!"); // ["David", "Hi", "Happy Birthday!"]
 
 
 # SPREAD
-Spread syntax (...) allows an iterable, such as an array or string, to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected. In an object literal, the spread syntax enumerates the properties of an object and adds the key-value pairs to the object being created.
+Spread syntax `(...)` allows an iterable, such as an array or string, to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected. In an object literal, the spread syntax enumerates the properties of an object and adds the key-value pairs to the object being created.
 
 Spread syntax looks exactly like rest syntax. In a way, spread syntax is the opposite of rest syntax. Spread syntax "expands" an array into its elements, while rest syntax collects multiple elements and "condenses" them into a single element. See rest parameters and rest property.
 Spread syntax can be used when all elements from an object or array need to be included in a new array or object, or should be applied one-by-one in a function call's arguments list. There are three distinct places that accept the spread syntax:
@@ -490,7 +491,7 @@ myFunction(...args);
 
 # Spread in array literals
 A more powerful array literal
-Without spread syntax, to create a new array using an existing array as one part of it, the array literal syntax is no longer sufficient and imperative code must be used instead using a combination of push(), splice(), concat(), etc. With spread syntax this becomes much more succinct:
+Without spread syntax, to create a new array using an existing array as one part of it, the array literal syntax is no longer sufficient and imperative code must be used instead using a combination of `push()`, `splice()`, `concat()`, etc. With spread syntax this becomes much more succinct:
 
 ~~~js
 const parts = ['shoulders', 'knees'];
@@ -498,7 +499,7 @@ const lyrics = ['head', ...parts, 'and', 'toes'];
 //  ["head", "shoulders", "knees", "and", "toes"]
 ~~~
 
-Just like spread for argument lists, ... can be used anywhere in the array literal, and may be used more than once.
+Just like spread for argument lists, `...` can be used anywhere in the array literal, and may be used more than once.
 
 ## Copy an array
 
@@ -512,7 +513,7 @@ arr2.push(4);
 ~~~
 
 # Spread in object literals
-Shallow-cloning (excluding prototype) or merging of objects is possible using a shorter syntax than Object.assign().
+Shallow-cloning (excluding prototype) or merging of objects is possible using a shorter syntax than `Object.assign()`.
 
 ~~~js
 const obj1 = { foo: 'bar', x: 42 };
@@ -547,7 +548,7 @@ console.log(sum(1, 2, 3, 4));
 ~~~
 
 ## Description
-A function definition's last parameter can be prefixed with ... (three U+002E FULL STOP characters), which will cause all remaining (user supplied) parameters to be placed within a standard JavaScript array. Only the last parameter in a function definition can be a rest parameter.
+A function definition's last parameter can be prefixed with `...` (three U+002E FULL STOP characters), which will cause all remaining (user supplied) parameters to be placed within a standard JavaScript array. Only the last parameter in a function definition can be a rest parameter.
 
 ~~~js
 
@@ -567,7 +568,7 @@ myFun("one", "two", "three", "four", "five", "six");
 ~~~
 
 Quick reference
-A function definition can have only one ...restParam.
+A function definition can have only one `...`restParam.
 
 ~~~js
 
@@ -581,9 +582,9 @@ foo(arg1, arg2, ...correct)
 The difference between rest parameters and the arguments object
 There are three main differences between rest parameters and the arguments object:
 
-* The arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort(), map(), forEach() or pop() can be applied on it directly.
+* The arguments object is not a real array, while rest parameters are Array instances, meaning methods like `sort()`, `map()`, `forEach()` or `pop()` can be applied on it directly.
 * The arguments object has additional functionality specific to itself (like the callee property).
-* The ...restParam bundles all the extra parameters into a single array, therefore it does not contain any named argument defined before the ...restParam. Whereas the arguments object contains all of the parameters — including the parameters in the ...restParam array — bundled into one array-like object.
+* The `...`restParam bundles all the extra parameters into a single array, therefore it does not contain any named argument defined before the `...`restParam. Whereas the arguments object contains all of the parameters — including the parameters in the `...`restParam array — bundled into one array-like object.
 From arguments to an array
 Rest parameters were introduced to reduce the boilerplate code that was commonly used for converting a set of arguments to an array.
 
@@ -939,8 +940,8 @@ Lexical Scoping - scoping is controlled by the placement of functions and blocks
 
 Global scope - outside of any function or block. Variables declared in it are global
 Function / Local scope - each function creates a scope and the variables declared there are only accessible in it
-Block scope - from ES6, blocks {...} create a scope also
-let and const variables (block scoped), declared in a Block scope, are accessible only inside it
+Block scope - from ES6, blocks `{...}` create a scope also
+`let` and `const` variables (block scoped), declared in a Block scope, are accessible only inside it
 vars (function scoped) though are scoped to the current Function or Global scope
 in strict mode all functions are block scoped too
 
@@ -981,7 +982,7 @@ obj2.f1 = obj1.f1
 obj2.f1() // 2 1 undefined {..obj2s}
 ~~~
 this is not assigned a value until the function where it is defined is called
-A constructor is a fn that allows us to create a blueprint, based on which we can create instances using the new keyword. In the constructor the this keyword refers to the newly created object.
+A `constructor` is a fn that allows us to create a blueprint, based on which we can create instances using the new keyword. In the `constructor` the this keyword refers to the newly created object.
 ~~~js
 // construction function should start with a capital letter
 const SomeConstructorFn = function (firstProp, secondProp) {
@@ -1014,9 +1015,9 @@ instanceof Function // true
 ~~~
 
 
-De-referencing an object - when we remove all pointers to a memory allocated space for an object, then the JS engine will clean it from the memory (garbage collect). This can be done by obj1 = null.
+De-referencing an object - when we remove all pointers to a memory allocated space for an object, then the JS engine will clean it from the memory (garbage collect). This can be done by `obj1 = null`.
 
-Wrapper types for primitive values - JS uses them to allow us to call methods on them like someString.substring(). Adds the wrapper when it notices the method call and destroys it immediately, that's why someString instanceof String === false
+Wrapper types for primitive values - JS uses them to allow us to call methods on them like `someString.substring()`. Adds the wrapper when it notices the method call and destroys it immediately, that's why someString instanceof `String === false`
 
 
 # Equality (===)
@@ -1033,8 +1034,8 @@ Wrapper types for primitive values - JS uses them to allow us to call methods on
 
 There are 2 ways to define them:
 
-* declaration - function a() {...} -> hoisting (js engine pushes it to the top of the scope)
-* expression - const a = function() {...} -> no hoisting because the js engine doesn't know the name of the function ahead of time
+* declaration - `function a() {...}` -> hoisting (js engine pushes it to the top of the scope)
+* expression - `const a = function() {...}` -> no hoisting because the js engine doesn't know the name of the function ahead of time
 > arguments - stores all passed params even if they are not declared
 
 > someFunction.length - returns the number of named params
@@ -1195,9 +1196,9 @@ Examples
  ~~~
 
  Usage notes
-The capitalization of "Id" in the name of this method must be correct for the code to function; getElementByID() is not valid and will not work, however natural it may seem.
+The capitalization of "Id" in the name of this method must be correct for the code to function; `getElementByID()` is not valid and will not work, however natural it may seem.
 
-Unlike some other element-lookup methods such as Document.querySelector() and Document.querySelectorAll(), getElementById() is only available as a method of the global document object, and not available as a method on all element objects in the DOM. Because ID values must be unique throughout the entire document, there is no need for "local" versions of the function.
+Unlike some other element-lookup methods such as `Document.querySelector()` and Document.`querySelectorAll()`, `getElementById()` is only available as a method of the global document object, and not available as a method on all element objects in the DOM. Because ID values must be unique throughout the entire document, there is no need for "local" versions of the function.
 
 ~~~html
 <!DOCTYPE html>
@@ -1246,9 +1247,9 @@ A live HTMLCollection of found elements in the order they appear in the tree.
 
 ## Examples
 
-In the following example, getElementsByTagName() starts from a particular parent element and searches top-down recursively through the DOM from that parent element, building a collection of all descendant elements which match the tag name parameter. This demonstrates both document.getElementsByTagName() and the functionally identical Element.getElementsByTagName(), which starts the search at a specific element within the DOM tree.
+In the following example, `getElementsByTagName()` starts from a particular parent element and searches top-down recursively through the DOM from that parent element, building a collection of all descendant elements which match the tag name parameter. This demonstrates both document.`getElementsByTagName()` and the functionally identical Element.`getElementsByTagName()`, which starts the search at a specific element within the DOM tree.
 
-Clicking the buttons uses getElementsByTagName() to count the descendant paragraph elements of a particular parent (either the document itself or one of two nested <div> elements).
+Clicking the buttons uses `getElementsByTagName()` to count the descendant paragraph elements of a particular parent (either the document itself or one of two nested `<div>` elements).
 
 ~~~html
 <!DOCTYPE html>
@@ -1313,16 +1314,16 @@ Clicking the buttons uses getElementsByTagName() to count the descendant paragra
 
 ## Notes
 
-> When called on an HTML document, getElementsByTagName() lower-cases its argument before proceeding. This is undesirable when trying to match camelCase SVG elements in a subtree in an HTML document. document.getElementsByTagNameNS() is useful in that case. See also bug 499656.
+> When called on an HTML document, `getElementsByTagName()` lower-cases its argument before proceeding. This is undesirable when trying to match camelCase SVG elements in a subtree in an HTML document. document.`getElementsByTagNameNS()` is useful in that case. See also bug 499656.
 
-> document.getElementsByTagName() is similar to Element.getElementsByTagName(), except that its search encompasses the whole document.
+>` document.getElementsByTagName()` is similar to `Element.getElementsByTagName()`, except that its search encompasses the whole document.
 <hr>
 
 # Document.getElementsByClassName()
 
-The getElementsByClassName method of Document interface returns an array-like object of all child elements which have all of the given class name(s).
+The `getElementsByClassName` method of Document interface returns an array-like object of all child elements which have all of the given class name(s).
 
-When called on the document object, the complete document is searched, including the root node. You may also call getElementsByClassName() on any element; it will return only elements which are descendants of the specified root element with the given class name(s).
+When called on the document object, the complete document is searched, including the root node. You may also call `getElementsByClassName()` on any element; it will return only elements which are descendants of the specified root element with the given class name(s).
 
 > Warning: This is a live HTMLCollection. Changes in the DOM will reflect in the array as the changes occur. If an element selected by this array no longer qualifies for the selector, it will automatically be removed. Be aware of this for iteration purposes.
 
@@ -1522,20 +1523,20 @@ A non-live NodeList containing one Element object for each element that matches 
 
 ## Examples
 Obtaining a list of matches
-To obtain a NodeList of all of the <p> elements in the document:
+To obtain a NodeList of all of the `<p> `elements in the document:
 ~~~js
 const matches = document.querySelectorAll("p");
 ~~~
 
-This example returns a list of all <div> elements within the document with a class of either note or alert:
+This example returns a list of all `<div>` elements within the document with a class of either note or alert:
 
-Here, we get a list of <p> elements whose immediate parent element is a <div> with the class highlighted and which are located inside a container whose ID is test.
+Here, we get a list of `<p>` elements whose immediate parent element is a `<div>` with the class highlighted and which are located inside a container whose ID is test.
 
 ~~~js
 const container = document.querySelector("#test");
 const matches = container.querySelectorAll("div.highlighted > p");
 ~~~
-This example uses an attribute selector to return a list of the <iframe> elements in the document that contain an attribute named data-src:
+This example uses an attribute selector to return a list of the `<iframe>` elements in the document that contain an attribute named data-src:
 ~~~js
 const matches = document.querySelectorAll("iframe[data-src]");
 ~~~
@@ -1560,7 +1561,7 @@ highlightedItems.forEach((userItem) => {
 ~~~
 
 ## User notes
-querySelectorAll() behaves differently than most common JavaScript DOM libraries, which might lead to unexpected results.
+`querySelectorAll()` behaves differently than most common JavaScript DOM libraries, which might lead to unexpected results.
 
 ## HTML
 
@@ -1580,7 +1581,7 @@ const inner = select.querySelectorAll('.outer .inner');
 inner.length; // 1, not 0!
 ~~~
 
-In this example, when selecting .outer .inner in the context of the <div> with the class select, the element with the class .inner is still found, even though .outer is not a descendant of the base element on which the search is performed (.select). By default, querySelectorAll() only verifies that the last element in the selector is within the search scope.
+In this example, when selecting .outer .inner in the context of the `<div>` with the class select, the element with the class .inner is still found, even though .outer is not a descendant of the base element on which the search is performed (.select). By default, `querySelectorAll()` only verifies that the last element in the selector is within the search scope.
 The :scope pseudo-class restores the expected behavior, only matching selectors on descendants of the base element:
 ~~~js
 const select = document.querySelector('.select');
@@ -1589,13 +1590,13 @@ inner.length; // 0
 ~~~
 
 querySelector Practice
-I've provided you with some simple markup in index.html.  Your task is to use querySelector and querySelectorAll to select some of those elements.
+I've provided you with some simple markup in index.html.  Your task is to use `querySelector` and `querySelectorAll` to select some of those elements.
 
 Select all elements that have the class of "done" and save them in a variable called doneTodos.
 
 Select the one checkbox and save it in a variable called checkbox. Be careful, there is more than one input element on the page! You'll need to select using the type attribute. (if you can't remember the css attribute selector...google it! That's what I would do!)
 
-Write your code in app.js.  Please do not change any of the elements in index.html
+Write your code in `app.js`.  Please do not change any of the elements in index.html
 
 ~~~html
 <!DOCTYPE html>
@@ -1626,6 +1627,278 @@ Write your code in app.js.  Please do not change any of the elements in index.ht
 ~~~js
 const doneTodos = document.querySelectorAll(".done");
 const checkbox = document.querySelector("input[type=checkbox]");
+~~~
+
+# HTMLElement.innerText
+
+The innerText property of the HTMLElement interface represents the rendered text content of a node and its descendants.
+
+As a getter, it approximates the text the user would get if they highlighted the contents of the element with the cursor and then copied it to the clipboard. As a setter this will replace the element's children with the given value, converting any line breaks into `<br>` elements.
+
+> Note: innerText is easily confused with Node.textContent, but there are important differences between the two. Basically, innerText is aware of the rendered appearance of text, while textContent is not.
+
+
+## Value
+ 
+ A string representing the rendered text content of an element.
+
+If the element itself is not being rendered (for example, is detached from the document or is hidden from view), the returned value is the same as the Node.textContent property.
+>Warning: Setting innerText on a node removes all of the node's children and replaces them with a single text node with the given string value.
+
+## Examples
+
+This example compares `innerText` with `Node`.textContent. Note how `innerText` is aware of things like `<br>` elements, and ignores hidden elements.
+
+## HTML
+~~~html
+<h3>Source element:</h3>
+<p id="source">
+  <style>
+    #source {
+      color: red;
+    }
+    #text {
+      text-transform: uppercase;
+    }
+  </style>
+  <span id="text">
+    Take a look at<br />
+    how this text<br />
+    is interpreted below.
+  </span>
+  <span style="display:none">HIDDEN TEXT</span>
+</p>
+<h3>Result of textContent:</h3>
+<textarea id="textContentOutput" rows="6" cols="30" readonly>…</textarea>
+<h3>Result of innerText:</h3>
+<textarea id="innerTextOutput" rows="6" cols="30" readonly>…</textarea>
+
+
+
+~~~
+
+## JavaScript
+
+~~~js
+const source = document.getElementById("source");
+const textContentOutput = document.getElementById("textContentOutput");
+const innerTextOutput = document.getElementById("innerTextOutput");
+
+textContentOutput.value = source.textContent;
+innerTextOutput.value = source.innerText;
+~~~
+
+Manipulating Attributes Practice
+Let's get some practice working with DOM element attributes. I've provided you with some very basic markup.  Please select the image element and:
+
+change its source to this url: https://devsprouthosting.com/images/chicken.jpg
+
+change its alt text to be "chicken"
+
+~~~html
+<!--DONT CHANGE ANYTHING IN THIS FILE, PLEASE!-->
+Egg and Chicken
+
+    
+<h4>Which Came First?</h4>
+<img src="https://devsprouthosting.com/images/egg.jpg" width="200px">
+<!-- image source: unsplash.com -->
+
+~~~
+
+~~~js
+// The url you need: 'https://devsprouthosting.com/images/chicken.jpg'
+document.querySelector('img').src = "https://devsprouthosting.com/images/chicken.jpg";
+document.querySelector("img").alt = "chicken";
+
+~~~
+
+
+# Window.getComputedStyle()
+
+The `Window.getComputedStyle()` method returns an object containing the values of all CSS properties of an element, after applying active stylesheets and resolving any basic computation those values may contain.
+
+Individual CSS property values are accessed through APIs provided by the object, or by indexing with CSS property names.
+
+## Syntax
+
+~~~js
+getComputedStyle(element)
+getComputedStyle(element, pseudoElt)
+~~~
+
+## Parameters
+
+### element
+
+The `Element` for which to get the computed style.
+
+Magical Forest Circle Exercise
+I've provided you with some basic markup in index.html.  Please do not change any of the markup directly.  Instead, use JavaScript to make the following changes:
+
+Select the div with the id of container.  Using JavaScript, set it's text alignment to 'center';
+
+Select the image and use JavaScript to give it a width of 150px and a border radius of 50%
+
+Remember to use camelCased property names in JavaScript! (backgroundColor, not background-color, etc.)
+
+
+  
+~~~html
+<!DOCTYPE html>
+
+<head>
+    <title>Forest</title>
+    <!--LEAVE THESE LINES ALONE, PLEASE! THEY MAKE THE LIVE PREVIEW WORK!-->
+    <script src="node_modules/babel-polyfill/dist/polyfill.js" type="text/javascript"> </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+   <div id="container">
+        <h1>I &hearts; Trees</h1>
+        <img src="https://images.unsplash.com/photo-1596328546171-77e37b5e8b3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" alt="">
+    </div>
+</body>
+
+</html>
+~~~
+
+~~~js
+const container = document.querySelector("#container");
+
+
+container.style.textAlign = "center";  
+
+
+const img = document.querySelector('img');
+img.style.width = '150px';
+img.style.borderRadius = '50%';
+~~~
+
+# Exercise
+
+I've provided you with an <h1> element which contains 7 individual spans (each holding a single letter). 
+
+Please write some JavaScript to make them rainbow-colored! 
+
+In app.js you'll find an array of color names called colors.  It looks like: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'].
+
+Your task is to select all spans, iterate over them, and assign them each one of the colors from the colors array.  The first span should be red, the second should be orange, etc.   Your result should look like this:
+~~~html
+<!DOCTYPE html>
+
+<head>
+    <title>Rainbow</title>
+    <!--LEAVE THESE LINES ALONE, PLEASE! THEY MAKE THE LIVE PREVIEW WORK!-->
+    <script src="node_modules/babel-polyfill/dist/polyfill.js" type="text/javascript"> </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <!--DON'T TOUCH THIS FILE PLEASE!-->
+    <h1>
+        <span>R</span>
+        <span>A</span>
+        <span>I</span>
+        <span>N</span>
+        <span>B</span>
+        <span>O</span>
+        <span>W</span>
+    </h1>
+</body>
+
+</html>
+~~~
+
+~~~js
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']; //PLEASE DON'T CHANGE THIS LINE!
+
+ const spans = document.querySelectorAll("h1 span");
+ 
+//  Solution 1
+
+  Array.from(spans).forEach((span, index) => {
+     span.style.color = colors[index]
+ }
+     )
+//Solution 2
+
+  let i = 0;
+  for (const span of spans) {
+      span.style.color = colors[i]
+     i++;
+   }
+
+//Solution 3
+for(let i = 0;i < spans.length; i++){
+    spans[i].style.color = colors[i]
+}
+~~~
+
+## Exercise
+
+ClassList Practice
+In index.html, you'll find 6 <li> elements, two of which have the 'highlight' class applied to them. 
+
+Please use JavaScript and the classList property to invert which elements have the highlight class. 
+
+Basically iterate over all the <li> elements and toggle the class of 'highlight' on each one.   Your end result should look like this:
+
+
+
+Please don't touch the markup in index.html! Do this all via JavaScript!
+
+~~~html
+<!DOCTYPE html>
+
+<head>
+    <title>ClasList</title>
+    <!--LEAVE THESE LINES ALONE, PLEASE! THEY MAKE THE LIVE PREVIEW WORK!-->
+    <script src="node_modules/babel-polyfill/dist/polyfill.js" type="text/javascript"> </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <!--LEAVE THIS FILE ALONE!-->
+    <ul>
+        <li>Hello</li>
+        <li class="highlight">Hello</li>
+        <li>Hello</li>
+        <li>Hello</li>
+        <li class="highlight">Hello</li>
+        <li>Hello</li>
+    </ul>
+</body>
+
+</html>
+~~~
+
+~~~css
+li {
+  background-color: #B10DC9;
+}
+
+.highlight {
+  background-color: #7FDBFF;
+}
+~~~
+~~~js
+const list = document.querySelectorAll('li');
+
+// Solution 1
+
+ for (let i = 0;i < list.lenght; i++){
+     list[i].classList.toggle('highlight')
+ }
+
+// Solution 2
+ Array.from(list).forEach(li => {
+     li.classList.toggle("highlight")
+ })
 ~~~
 
 

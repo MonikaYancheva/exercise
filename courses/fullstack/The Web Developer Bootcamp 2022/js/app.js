@@ -182,8 +182,11 @@ const heading = document.getElementById("mainheading");
 
 
 
+<h4>Which Came First?</h4>
+<img src="https://devsprouthosting.com/images/egg.jpg" width="200px">
+<!-- image source: unsplash.com -->
 
-
-
-
+// The url you need: 'https://devsprouthosting.com/images/chicken.jpg'
+document.querySelector('img').src = "https://devsprouthosting.com/images/chicken.jpg";
+document.querySelector("img").alt = "chicken";
 
