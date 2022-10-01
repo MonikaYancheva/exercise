@@ -1902,10 +1902,50 @@ const list = document.querySelectorAll('li');
 ~~~
 
 
+# Element.insertAdjacentElement()
+The insertAdjacentElement() method of the Element interface inserts a given element node at a given position relative to the element it is invoked upon.
 
+# Syntax
 
+~~~js
+insertAdjacentElement(position, element)
+~~~
 
+# Parameters
+position
 
+A string representing the position relative to the targetElement; must match (case-insensitively) one of the following strings:
+
+* `beforebegin`: Before the targetElement itself.
+* `afterbegin`: Just inside the targetElement, before its first child.
+* `beforeend`: Just inside the targetElement, after its last child.
+* `afterend`: After the targetElement itself.
+element
+The element to be inserted into the tree.
+
+## Return value
+The element that was inserted, or null, if the insertion failed.
+
+ ## Examples
+ ~~~js
+ beforeBtn.addEventListener('click', () => {
+  const tempDiv = document.createElement('div');
+  tempDiv.style.backgroundColor = randomColor();
+  if (activeElem) {
+    activeElem.insertAdjacentElement('beforebegin', tempDiv);
+  }
+  setListener(tempDiv);
+});
+
+afterBtn.addEventListener('click', () => {
+  const tempDiv = document.createElement('div');
+  tempDiv.style.backgroundColor = randomColor();
+  if (activeElem) {
+    activeElem.insertAdjacentElement('afterend', tempDiv);
+  }
+  setListener(tempDiv);
+});
+ ~~~
 
 
 
