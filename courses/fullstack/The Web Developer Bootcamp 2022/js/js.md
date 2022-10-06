@@ -1947,10 +1947,88 @@ afterBtn.addEventListener('click', () => {
 });
  ~~~
 
+# Element.insertAdjacentElement()
+
+The `insertAdjacentElement()` method of the Element interface inserts a given element node at a given position relative to the element it is invoked upon.
+
+## Syntax
+ 
+ ~~~js
+ insertAdjacentElement(position, element)
+ ~~~
+
+* В квадратни скоби търси `таг`!
+* Без нищо `атрубут`!
+* С точка `клас`!
+* Решетка `id`!
 
 
 
+# 100 Button Insanity Exercise
 
+Without touching index.html, please use JavaScript to create exactly 100 new button elements! Add each new button inside the container element provided in index.html.  Unfortunately, Udemy's exercise tool does not support to the append method, so you will need to use appendChild.  Here are the steps:
+
+Create exactly 100 new button elements
+
+Each button must have some text inside of it (it doesn't matter what)
+
+Each button must be appended inside the container div.
+
+~~~html
+<!DOCTYPE html>
+
+<head>
+    <title>100 Buttons!</title>
+</head>
+
+<body>
+    <!--DO NOT TOUCH THIS FILE PLEASE!-->
+    <h1>Look At All My Buttons!</h1>
+    <div id="container">
+    
+    </div>
+</body>
+
+</html>
+~~~
+
+~~~js
+const containerEl = document.querySelector("#container");
+
+for (let i = 0;i < 100; i++) {
+    const button = document.createElement("button")
+    button.innerText = 'Monika'
+    containerEl.appendChild(button)
+}
+~~~
+
+# Know Thy Enemy Exercise
+In this exercise, I'm asking you to write some inline event handlers WHICH IS NOT SOMETHING I RECOMMEND, but hopefully it will illustrate to you just how annoying it can be. In index.html, you'll find an `<h1>` element and a `<button>`.  Please add two inline click handlers directly in the html:
+
+When the h1 is clicked, you should print*  "boo"
+
+When the button is clicked, you should print "clicked"
+
+* "print" = console.log('something here');
+
+~~~html
+<!DOCTYPE html>
+
+<head>
+    <title>Inline Events</title>
+    <!--LEAVE THESE LINES ALONE, PLEASE! THEY MAKE THE LIVE PREVIEW WORK!-->
+    <script src="node_modules/babel-polyfill/dist/polyfill.js" type="text/javascript"> </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <h1 onclick="console.log('boo')">Inline Events Suck...</h1>
+    <button onclick="console.log('clicked')"id="btn">Click Me</button>
+</body>
+
+</html>
+~~~
 
 
 
