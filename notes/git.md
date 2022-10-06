@@ -11,3 +11,5 @@
 - `git push` - push all committed changes to the server (Github)
 
 - `git pull` - pull the latest pushed changes from the server to the pc
+
+- `sd..`  - Dir up
