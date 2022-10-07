@@ -277,7 +277,7 @@ perimeter should accept the length of a side and return that side multiplied by 
 
 square.area(10) //100
 square.perimeter(10) //40
-  
+
 js
   const square = {
     area(side) {
@@ -1743,7 +1743,7 @@ Select the image and use JavaScript to give it a width of 150px and a border rad
 Remember to use camelCased property names in JavaScript! (backgroundColor, not background-color, etc.)
 
 
-  
+
 ~~~html
 <!DOCTYPE html>
 
