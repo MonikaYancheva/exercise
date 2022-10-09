@@ -1,5 +1,3 @@
-document.body.style.transition = "all 2s";
-
 const button = document.querySelector('button');
 const h1 = document.querySelector('h1');
 const btnStart = document.querySelector("#start");
@@ -7,9 +5,12 @@ const btnStop = document.querySelector("#end");
 let intervalId;
 
 const setNewColor = () => {
-  const newColor = makeRandColor();
-  document.body.style.backgroundColor = newColor;
-  h1.innerText = newColor;
+  const newGradient = `linear-gradient(45deg, ${makeRandColor()}, ${makeRandColor()})`;
+  document.body.style.background = newGradient; 
+  
+  h1.innerText = newGradient;
+  // const newColor = makeRandColor();
+  // document.body.style.backgroundColor = newColor;
 }
 
 const makeRandColor = () => {
