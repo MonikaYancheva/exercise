@@ -2073,5 +2073,92 @@ myGoodbyeBtn.addEventListener('click',function(){
 })
 ~~~
 
+# Event.preventDefault()
 
+The `preventDefault()` method of the Event interface tells the user agent that if the event does not get explicitly handled, its default action should not be taken as it normally would be.
 
+The event continues to propagate as usual, unless one of its event listeners calls `stopPropagation()` or `stopImmediatePropagation()`, either of which terminates propagation at once.
+
+As noted below, calling `preventDefault()` for a non-cancelable event, such as one dispatched via `EventTarget.dispatchEvent()`, without specifying cancelable: true has no effect.
+
+## Syntax
+
+~~~js
+event.preventDefault()
+~~~
+
+~~~html
+<!DOCTYPE html>
+<html>
+<body>
+
+<a id="myAnchor" href="https://w3schools.com/">Go to W3Schools.com</a>
+
+<p>The preventDefault() method will prevent the link above from following the URL.</p>
+
+<script>
+document.getElementById("myAnchor").addEventListener("click", function(event){
+  event.preventDefault()
+});
+</script>
+
+</body>
+</html>
+
+~~~
+
+### Example 1
+The following code stops a checkbox from executing its default action by using the preventDefault() method.
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event.preventDefault()</title>
+</head>
+<body>
+    <label>A developer?</label>
+    <br/>
+    <input type="checkbox" id="prevent">Yes
+
+    <script>
+        document.getElementById("prevent").addEventListener("click",(event)=>{
+            event.preventDefault();
+        })
+    </script>
+</body>
+</html>
+~~~
+>Some event actions cannot be prevented using the event.preventDefault(). In order to check if an event can be prevented, you can check its event.cancelable property. This property can either be false or true.
+
+## Example 2
+The oninput event on an input element is not cancelable. Therefore, it will still allow a user to input strings of characters. Take a look at the example below. There will be an alert when you input your texts, and you will still be able to input more because the oninput event action is not cancelable.
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event.preventDefault()</title>
+</head>
+<body>
+    <label>Enter any text</label>
+    <br/>
+    <input type="input" id="prevent">
+
+    <script>
+        document.getElementById("prevent").addEventListener("input",(e)=>{
+            if(event.cancelable){
+                alert("oninput event is cancelable!")
+            }else{
+                alert("oninput event is not cancelable!\nSo you can still type!")
+            }
+        })
+    </script>
+</body>
+</html>
+~~~
