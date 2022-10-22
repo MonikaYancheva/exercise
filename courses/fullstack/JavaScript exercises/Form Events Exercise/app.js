@@ -11,9 +11,10 @@ form.addEventListener('submit', function (grocery) {
   const size = qty.value
   const data = `You Bought ${product.value}  ${qty.value} times.`
   const newLi = document.createElement('li')
-  
+
   newLi.innerText = data
   list.appendChild(newLi)
+  
   product.value = ''
   qty.value = ''
 })

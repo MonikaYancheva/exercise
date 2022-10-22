@@ -2162,3 +2162,99 @@ The oninput event on an input element is not cancelable. Therefore, it will stil
 </body>
 </html>
 ~~~
+Several events can be fired when we access a website. These events could be a button click, filling out a form and submitting it, closing a tab, clicking a checkbox, or scrolling a page. All of these are events.
+
+In JavaScript, these events’ actions can be canceled. Yes, they can be kept from executing the default action that is associated with it. This is done using the `preventDefault()` method of an event. The `preventDefault()` method of an event is used to stop a cancelable event from executing.
+
+
+~~~html
+<!DOCTYPE html>
+
+<head>
+    <title>Grocery List</title>
+    <!--LEAVE THESE LINES ALONE, PLEASE! THEY MAKE THE LIVE PREVIEW WORK!-->
+    <script src="node_modules/babel-polyfill/dist/polyfill.js" type="text/javascript"> </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Grocery List</h1>
+    <form action="/nowhere">
+        <label for="item">Enter A Product</label>
+        <input type="text" id="product" name="product">
+        <label for="item">Enter A Quantity</label>
+        <input type="number" id="qty" name="qty">
+        <button>Submit</button>
+    </form>
+
+    <ul id="list"></ul>
+</body>
+
+</html>
+~~~
+
+~~~js
+// Leave the next' line, the form must be assigned to a variable named 'form' in order for the exercise test to pass
+const form = document.querySelector('form');
+const product = document.querySelector('#product');
+const qty = document.querySelector('#qty');
+const list = document.querySelector('#list');
+
+form.addEventListener('submit', function (grocery) {
+  grocery.preventDefault()
+
+  const productName = product.value
+  const size = qty.value
+  const data = `You Bought ${product.value}  ${qty.value} times.`
+  const newLi = document.createElement('li')
+
+  newLi.innerText = data
+  list.appendChild(newLi)
+  
+  product.value = ''
+  qty.value = ''
+})
+~~~
+
+
+### INPUT EVENT
+
+~~~html
+<!DOCTYPE html>
+
+<head>
+    <title>Input Event</title>
+    <!--LEAVE THESE LINES ALONE, PLEASE! THEY MAKE THE LIVE PREVIEW WORK!-->
+    <script src="node_modules/babel-polyfill/dist/polyfill.js" type="text/javascript"> </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Enter Your Username</h1>
+    <input type="text" id="username">
+</body>
+
+</html>
+~~~
+
+~~~js
+const input = document.querySelector('input')
+
+input.addEventListener('input', (e) => {
+  const h1 = document.querySelector('h1')
+
+  //   h1.innerText = `Welcome, ${e.target.value}`
+
+  //   if (e.target.value.length === 0) {
+  //     h1.innerText = 'Enter Your Username'
+  //   }
+
+  const {value} = e.target
+
+  h1.innerText = value.length === 0 ? 'Enter Your Username' : `Welcome, ${e.target.value}`
+})
+// ? = if!
+//  : = else!
+~~~
