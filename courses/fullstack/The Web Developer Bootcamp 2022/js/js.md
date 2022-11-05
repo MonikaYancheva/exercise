@@ -2258,3 +2258,336 @@ input.addEventListener('input', (e) => {
 // ? = if!
 //  : = else!
 ~~~
+
+# Game Score Keeper
+
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Score Keeper</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  
+</head>
+
+<body>
+  <section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-2by1">
+              <img src="pingpong.jpg" alt="">
+            </figure>
+          </div>
+
+  <header class="card-header">
+    <p class="card-header-title">
+      Ping Pong Score Keeper
+    </p>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+
+  <div class="card-content">
+  <h1 class="title is-1">
+    <span id="p1Display">0</span> to <span id="p2Display">0</span>
+  </h1>
+    <p class="subtitle">Use the buttons below to keep score</p>
+    <label to="playto" class="label is-large is-inline">Playing To</label>
+    <div class="select is-rounded">
+  <select name="" id="playTo">
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+  </select>
+  
+       
+    </div>
+    
+  </div>
+  <footer class="card-footer">
+    <button id="p1Button" class="is-primary button card-footer-item is-large">+1 Player One</button>
+    <button id="p2Button" class="is-info button card-footer-item is-large">+1 Player Two</button>
+    <button id="reset" class="is-danger button card-footer-item is-large">Reset</button>
+    
+  </footer>
+  </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  </section>  
+   
+
+  <script src="app.js"></script>
+</body>
+</html>
+~~~
+
+~~~js
+const p1Button = document.querySelector('#p1Button')
+const p2Button = document.querySelector('#p2Button')
+const resetButton = document.querySelector('#reset')
+const p1Display = document.querySelector('#p1Display')
+const p2Display = document.querySelector('#p2Display')
+const winningScoreSelect = document.querySelector('#playTo')
+
+let p1Score = 0
+let p2Score = 0
+let winningScore = 3
+let isGameOver = false
+
+p1Button.addEventListener('click', function () {
+  if (!isGameOver) {
+  p1Score += 1
+  if (p1Score === winningScore) {
+    isGameOver = true
+
+    p1Display.classList.add('has-text-success')
+    p2Display.classList.add('has-text-danger')
+    p1Button.disabled = true;
+    p2Button.disabled = true;
+  }
+  p1Display.textContent = p1Score
+ }
+})
+
+p2Button.addEventListener('click', function () {
+  if (!isGameOver) {
+    p2Score += 1
+    if (p2Score === winningScore) {
+      isGameOver = true
+      p2Display.classList.add('has-text-success')
+      p1Display.classList.add('has-text-danger')
+      p1Button.disabled = true;
+      p2Button.disabled = true;
+    }
+    p2Display.textContent = p2Score
+  }
+})
+
+winningScoreSelect.addEventListener('change', function () {
+  winningScore = parseInt(this.value)
+  reset()
+})
+
+resetButton.addEventListener('click', reset)
+
+function reset() {
+  isGameOver = false
+  p1Score = 0
+  p2Score = 0
+  p1Display.textContent = 0
+  p2Display.textContent = 0
+  p1Display.classList.remove('has-text-success', 'has-text-danger')
+  p2Display.classList.remove('has-text-success', 'has-text-danger')
+  p1Button.disabled = false;
+  p2Button.disabled = false;
+}
+~~~
+
+# ASYNC JS
+## An async function is a function declared with the async keyword, and the await keyword is permitted within it. The async and await keywords enable asynchronous, promise-based behavior to be written in a cleaner style, avoiding the need to explicitly configure promise chains.
+
+Promise
+The `Promise` object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+
+To learn about the way promises work and how you can use them, we advise you to read Using promises first.
+
+Description
+A `Promise` is a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason. This lets asynchronous methods return values like synchronous methods: instead of immediately returning the final value, the asynchronous method returns a promise to supply the value at some point in the future.
+
+A `Promise` is in one of these states:
+
+`pending`: initial state, neither fulfilled nor rejected.
+`fulfilled`: meaning that the operation was completed successfully.
+`rejected`: meaning that the operation failed.
+
+The eventual state of a pending promise can either be fulfilled with a value or rejected with a reason (error). When either of these options occur, the associated handlers queued up by a promise's then method are called. If the promise has already been fulfilled or rejected when a corresponding handler is attached, the handler will be called, so there is no race condition between an asynchronous operation completing and its handlers being attached.
+
+A `promise` is said to be settled if it is either fulfilled or rejected, but not pending.
+
+Chained Promises
+The methods `Promise.prototype.then()`, `Promise.prototype.catch()`, and `Promise.prototype.finally()` are used to associate further action with a promise that becomes settled. As these methods return promises, they can be chained.
+
+The `.then()` method takes up to two arguments; the first argument is a callback function for the fulfilled case of the promise, and the second argument is a callback function for the rejected case. Each `.then()` returns a newly generated promise object, which can optionally be used for chaining; for example:
+
+~~~js
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("foo");
+  }, 300);
+});
+
+myPromise
+  .then(handleFulfilledA, handleRejectedA)
+  .then(handleFulfilledB, handleRejectedB)
+  .then(handleFulfilledC, handleRejectedC);
+~~~
+
+Processing continues to the next link of the chain even when a `.then()` lacks a callback function that returns a Promise object. Therefore, a chain can safely omit every rejection callback function until the final `.catch()`.
+
+Handling a rejected promise in each `.then()` has consequences further down the promise chain. Sometimes there is no choice, because an error must be handled immediately. In such cases we must throw an error of some type to maintain error state down the chain. On the other hand, in the absence of an immediate need, it is simpler to leave out error handling until a final `.catch()` statement. A `.catch()` is really just a `.then()` without a slot for a callback function for the case when the promise is fulfilled.
+
+
+~~~js
+myPromise
+  .then(handleFulfilledA)
+  .then(handleFulfilledB)
+  .then(handleFulfilledC)
+  .catch(handleRejectedAny);
+~~~
+
+Using arrow functions for the callback functions, implementation of the promise chain might look something like this:
+
+~~~js
+myPromise
+  .then((value) => `${value} and bar`)
+  .then((value) => `${value} and bar again`)
+  .then((value) => `${value} and again`)
+  .then((value) => `${value} and again`)
+  .then((value) => {
+    console.log(value);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+~~~
+> Note: For faster execution, all synchronous actions should preferably be done within one handler, otherwise it would take several ticks to execute all handlers in sequence.
+
+`Promise.prototype.catch()`
+Appends a rejection handler callback to the promise, and returns a new promise resolving to the return value of the callback if it is called, or to its original fulfillment value if the promise is instead fulfilled.
+
+`Promise.prototype.then()`
+Appends fulfillment and rejection handlers to the promise, and returns a new promise resolving to the return value of the called handler, or to its original settled value if the promise was not handled (i.e. if the relevant handler onFulfilled or onRejected is not a function).
+
+`Promise.prototype.finally()`
+Appends a handler to the promise, and returns a new promise that is resolved when the original promise is resolved. The handler is called when the promise is settled, whether fulfilled or rejected.
+
+Constructor
+`Promise()`
+Creates a new Promise object. The constructor is primarily used to wrap functions that do not already support promises.
+
+Static methods
+`Promise.all()`
+Wait for all promises to be fulfilled, or for any to be rejected.
+
+If the returned promise fulfills, it is fulfilled with an aggregating array of the values from the fulfilled promises, in the same order as defined in the iterable of multiple promises.
+
+If it rejects, it is rejected with the reason from the first promise in the iterable that was rejected.
+
+`Promise.allSettled()`
+Wait until all promises have settled (each may fulfill or reject).
+
+Returns a Promise that fulfills after all of the given promises is either fulfilled or rejected, with an array of objects that each describe the outcome of each promise.
+
+`Promise.any()`
+Takes an iterable of Promise objects and, as soon as one of the promises in the iterable fulfills, returns a single promise that fulfills with the value from that promise.
+
+`Promise.race()`
+Wait until any of the promises is fulfilled or rejected.
+
+If the returned promise fulfills, it is fulfilled with the value of the first promise in the iterable that fulfilled.
+
+If it rejects, it is rejected with the reason from the first promise that was rejected.
+
+`Promise.reject()`
+Returns a new Promise object that is rejected with the given reason.
+
+`Promise.resolve()`
+Returns a new Promise object that is resolved with the given value. If the value is a thenable (i.e. has a then method), the returned promise will "follow" that thenable, adopting its eventual state; otherwise, the returned promise will be fulfilled with the value.
+
+Generally, if you don't know if a value is a promise or not, `Promise.resolve(value)`` it instead and work with the return value as a promise.
+
+# async function
+
+An async function is a function declared with the async keyword, and the await keyword is permitted within it. The async and await keywords enable asynchronous, promise-based behavior to be written in a cleaner style, avoiding the need to explicitly configure promise chains.
+
+"async and await make promises easier to write"
+>`async` makes a function return a Promise
+
+>`await` makes a function wait for a Promise
+
+## Async Syntax
+
+The keyword `async` before a function makes the function return a promise:
+
+
+Example
+~~~js
+async function myFunction() {
+  return "Hello";
+}
+~~~
+Is the same as:
+~~~js
+function myFunction() {
+  return Promise.resolve("Hello");
+}
+~~~
+
+# AWAIT
+
+## Description
+Async functions can contain zero or more await expressions. Await expressions make promise-returning functions behave as though they're synchronous by suspending execution until the returned promise is fulfilled or rejected. The resolved value of the promise is treated as the return value of the await expression. Use of async and await enables the use of ordinary try / catch blocks around asynchronous code.
+
+>Note: The await keyword is only valid inside async functions within regular JavaScript code. If you use it outside of an async function's body, you will get a SyntaxError.
+
+await can be used on its own with JavaScript modules.
+
+>Note: The purpose of async/await is to simplify the syntax necessary to consume promise-based APIs. The behavior of async/await is similar to combining generators and promises.
+
+Await Syntax
+The await keyword can only be used inside an async function.
+
+The await keyword makes the function pause the execution and wait for a resolved promise before it continues:
+
+~~~js
+let value = await promise;
+~~~
+
+
+# Web APIs
+
+When writing code for the Web, there are a large number of Web APIs available. Below is a list of all the APIs and interfaces (object types) that you may be able to use while developing your Web app or site.
+
+Web APIs are typically used with JavaScript, although this doesn't always have to be the case.
+
+#JSON
+
+JSON (JavaScript Object Notation) е опростен формат за обмяна на данни, удобен за работа както за хората, така и за компютрите. Той е базиран на едно подмножество на езика за програмиране JavaScript, Standard ECMA-262 3rd Edition - от декември 1999. JSON има текстов формат, напълно независим от реализацията на езика, но използва конвенции, които са познати на програмистите на C-подобни езици, включително C, C++, C#, Java, JavaScript, Perl, Python, и много други. Тези свойства правят JSON идеален език за обмяна на данни.
+
+JSON се състои от две структури:
+
+Колекция от двойки име/стойност. В различните езици, това се реализира като обект, запис, структура, речник, хеш таблица, именован списък, или асоциативен масив.
+Подреден списък от стойности. В повечето езици, това се реализира чрез масив, вектор, списък или последователност.
+Това са универсални структури от данни, които се поддържат от всички модерни езици под една или друга форма. Може да се предположи, че формат, подходящ за обмяна на данни между езиците за програмиране, също ще бъде базиран на тези структури.
+
+В JSON, това изглежда по следния начин:
+
+Един обект е неподреден набор от двойки име/стойност. Обекта започва с {лява фигурна скоба и завършва с }дясна фигурна скоба. След всяко име се поставя :двуеточие, а двойките име/стойност се разделят със ,запетайка.
+Един масив е подредена колекция от стойности. Масивът започва с [лява квадратна скоба и завършва с ]дясна квадратна скоба. Стойностите се разделят чрез ,запетайка.
+Една стойност може да бъде стринг в двойни кавички, число, истина (true) или лъжа (false), null, обект или масив. Тези структури могат да бъдат вложени.
+
+
+Един стринг е колекция от от нула или повече Unicode символи, обграден от двойни кавички, използвайки \обратна наклонена черта като escape символ. Символът се представя чрез низ, съдържащ само един символ. Стрингът е подобен на тези в C или Java.
+Между двойките може да бъде вмъквано празно пространство (whitespace). С изключение на някои детайли относно кодирането на символите (encoding), това напълно описва езика.
