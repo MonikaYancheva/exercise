@@ -3004,3 +3004,10 @@ fetch('https://example.com', {
   credentials: 'omit'
 })
 ~~~
+
+# AXIOS
+
+https://github.com/axios/axios#installing
+
+
+Shift + F6 + (Fn) = Rename everywhere in an IDE!
