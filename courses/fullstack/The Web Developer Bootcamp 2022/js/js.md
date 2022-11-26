@@ -3011,3 +3011,20 @@ https://github.com/axios/axios#installing
 
 
 Shift + F6 + (Fn) = Rename everywhere in an IDE!
+Ctrl  + D = Dublicate ;
+console.table = 
+Ctrl + Y = Delete the Row
+
+console.table()
+It logs data as a table. Each element in the array (or enumerable property if data is an object) will be a row in the table.
+
+The first column in the table will be labeled (index). If data is an array, then its values will be the array indices. If data is an object, then its values will be the property names. Note that (in Firefox) console.table is limited to displaying 1000 rows (first row is the labeled index).
+
+Note: This feature is available in Web Workers
+
+Collections of primitive types
+The data argument may be an array or an object.
+
+// an array of strings
+
+console.table(["apples", "oranges", "bananas"]);s
