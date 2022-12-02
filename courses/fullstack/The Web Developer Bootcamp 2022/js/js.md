@@ -3010,10 +3010,10 @@ fetch('https://example.com', {
 https://github.com/axios/axios#installing
 
 
-Shift + F6 + (Fn) = Rename everywhere in an IDE!
-Ctrl  + D = Dublicate ;
-console.table = 
-Ctrl + Y = Delete the Row
+> Shift + F6 + (Fn) = Rename everywhere in an IDE!
+> Ctrl  + D = Dublicate ;
+> console.table = 
+> Ctrl + Y = Delete the Row
 
 console.table()
 It logs data as a table. Each element in the array (or enumerable property if data is an object) will be a row in the table.
