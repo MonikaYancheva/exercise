@@ -3028,3 +3028,416 @@ The data argument may be an array or an object.
 // an array of strings
 
 console.table(["apples", "oranges", "bananas"]);s
+
+
+
+# PROTOTYPES,CLASSES & OOP
+
+## JavaScript Factory Functions
+
+Summary: in this tutorial, you will learn about the JavaScript factory functions which are functions that return objects.
+
+Introduction to the factory functions in JavaScript
+A factory function is a function that returns a new object. The following creates a person object named person1:
+
+~~~js
+let person1 = {
+  firstName: 'John',
+  lastName: 'Doe',
+  getFullName() {
+    return this.firstName + ' ' + this.lastName;
+  },
+};
+
+console.log(person1.getFullName());
+
+~~~
+> Output:
+
+> John Doe
+
+The person1 object has two properties: firstName and lastName, and one method getFullName() that returns the full name.
+
+Suppose that you need to create another similar object called person2, you can duplicate the code as follows:
+
+~~~js
+let person2 = {
+  firstName: 'Jane',
+  lastName: 'Doe',
+  getFullName() {
+    return this.firstName + ' ' + this.lastName;
+  },
+};
+
+console.log(person2.getFullName());
+~~~
+
+Output:
+
+Jane Doe
+
+In this example, the person1 and person2 objects have the same properties and methods.
+The problem is that the more objects you want to create, the more duplicate code you have.
+
+To avoid copying the same code all over again, you can define a function that creates the person object:
+
+~~~js
+function createPerson(firstName, lastName) {
+  return {
+    firstName: firstName,
+    lastName: lastName,
+    getFullName() {
+      return firstName + ' ' + lastName;
+    },
+  };
+}
+~~~
+
+When a function creates and returns a new object, it is called a factory function. The createPerson() is a factory function because it returns a new person object.
+
+The following show how to use the createPerson() factory function to create two objects person1 and person2:
+~~~js
+
+function createPerson(firstName, lastName) {
+  return {
+    firstName: firstName,
+    lastName: lastName,
+    getFullName() {
+      return firstName + ' ' + lastName;
+    },
+  };
+}
+
+let person1 = createPerson('John', 'Doe');
+let person2 = createPerson('Jane', 'Doe');
+
+console.log(person1.getFullName());
+console.log(person2.getFullName());
+~~~
+
+By using the factory function, you create any number of the person objects without duplicating code.
+
+When you create an object, the JavaScript engine allocates memory to it. If you create many person objects, the JavaScript engine needs lots of memory spaces to store these objects.
+
+However, each person object has a copy of the same getFullName() method. It’s not efficient memory management.
+
+To avoid duplicating the same getFullName() function in every object, you can remove the getFullName() method from the person object:
+
+~~~js
+function createPerson(firstName, lastName) {
+    return {
+        firstName: firstName,
+        lastName: lastName
+    }
+}
+~~~
+And move this method to another object:
+
+~~~js
+var personActions = {
+  getFullName() {
+    return this.firstName + ' ' + this.lastName;
+  },
+};
+~~~
+
+And before calling the getFullName() method on the person object, you can assign the method of the personActions object to the person object as follows:
+
+~~~js
+let person1 = createPerson('John', 'Doe');
+let person2 = createPerson('Jane', 'Doe');
+
+person1.getFullName = personActions.getFullName;
+person2.getFullName = personActions.getFullName;
+
+console.log(person1.getFullName());
+console.log(person2.getFullName());
+~~~
+This approach is not scalable if the object has many methods because you have to manually assign them individually. This is why the `Object.create()` method comes into play.
+
+## The Object.create() method
+
+The `Object.create()` method creates a new object using an existing object as the prototype of the new object:
+
+~~~js
+Object.create(proto, [propertiesObject])
+~~~
+
+So you can use the `Object.create()` as follows:
+
+~~~js
+
+let person1 = createPerson('John', 'Doe');
+let person2 = createPerson('Jane', 'Doe');
+
+console.log(person1.getFullName());
+console.log(person2.getFullName());
+~~~
+
+The code works perfectly fine. However, in practice, you will rarely use the factory functions. Instead, you use classes or constructor/prototype patterns.
+
+# CONSTRUCTOR
+
+The constructor method is a special method of a class for creating and initializing an object instance of that class.
+
+> Note: This page introduces the constructor syntax. For the constructor property present on all objects, see Object.prototype.constructor.
+ 
+
+## JavaScript Demo: Classes Constructor
+
+~~~js
+class Polygon {
+  constructor() {
+    this.name = 'Polygon';
+  }
+}
+
+const poly1 = new Polygon();
+
+console.log(poly1.name);
+// expected output: "Polygon"
+
+~~~
+
+## Syntax
+
+~~~js
+
+~~~constructor() { /* … */ }
+constructor(argument0) { /* … */ }
+constructor(argument0, argument1) { /* … */ }
+constructor(argument0, argument1, /* … ,*/ argumentN) { /* … */ }
+~~~
+
+## Description
+A constructor enables you to provide any custom initialization that must be done before any other methods can be called on an instantiated object.
+
+~~~js
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  introduce() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+const otto = new Person("Otto");
+
+otto.introduce(); // Hello, my name is Otto
+~~~
+
+
+~~~js
+constructor() {}
+~~~
+
+If your class is a derived class, the default constructor calls the parent constructor, passing along any arguments that were provided:
+
+~~~js
+constructor(...args) {
+  super(...args);
+}
+~~~
+
+> Note: The difference between an explicit constructor like the one above and the default constructor is that the latter doesn't actually invoke the array iterator through argument spreading.
+
+That enables code like this to work:
+
+~~~js
+class ValidationError extends Error {
+  printCustomerMessage() {
+    return `Validation failed :-( (details: ${this.message})`;
+  }
+}
+
+try {
+  throw new ValidationError("Not a valid phone number");
+} catch (error) {
+  if (error instanceof ValidationError) {
+    console.log(error.name); // This is Error instead of ValidationError!
+    console.log(error.printCustomerMessage());
+  } else {
+    console.log("Unknown error", error);
+    throw error;
+  }
+}
+
+~~~
+The ValidationError class doesn't need an explicit constructor, because it doesn't need to do any custom initialization. The default constructor then takes care of initializing the parent Error from the argument it is given.
+
+However, if you provide your own constructor, and your class derives from some parent class, then you must explicitly call the parent class constructor using super(). For example:
+
+~~~js
+class ValidationError extends Error {
+  constructor(message) {
+    super(message); // call parent class constructor
+    this.name = "ValidationError";
+    this.code = "42";
+  }
+
+  printCustomerMessage() {
+    return `Validation failed :-( (details: ${this.message}, code: ${this.code})`;
+  }
+}
+
+try {
+  throw new ValidationError("Not a valid phone number");
+} catch (error) {
+  if (error instanceof ValidationError) {
+    console.log(error.name); // Now this is ValidationError!
+    console.log(error.printCustomerMessage());
+  } else {
+    console.log("Unknown error", error);
+    throw error;
+  }
+}
+~~~
+
+Using new on a class goes through the following steps:
+
+(If it's a derived class) The constructor body before the `super()` call is evaluated. This part should not access this because it's not yet initialized.
+(If it's a derived class) The `super()` call is evaluated, which initializes the parent class through the same process.
+The current class's fields are initialized.
+The constructor body after the `super()` call (or the entire body, if it's a base class) is evaluated.
+Within the constructor body, you can access the object being created through this and access the class that is called with new through new.target. Note that methods (including getters and setters) and the prototype chain are already initialized on this before the constructor is executed, so you can even access methods of the subclass from the constructor of the superclass. However, if those methods use this, the this will not have been fully initialized yet. This means reading public fields of the derived class will result in undefined, while reading private fields will result in a TypeError.
+
+~~~js
+new (class C extends class B {
+  constructor() {
+    console.log(this.foo());
+  }
+} {
+  #a = 1;
+  foo() {
+    return this.#a; // TypeError: Cannot read private member #a from an object whose class did not declare it
+    // It's not really because the class didn't declare it,
+    // but because the private field isn't initialized yet
+    // when the superclass constructor is running
+  }
+})();
+~~~
+
+The constructor method may have a return value. While the base class may return anything from its constructor, the derived class must return an object or undefined, or a TypeError will be thrown.
+
+~~~js
+class ParentClass {
+  constructor() {
+    return 1;
+  }
+}
+
+console.log(new ParentClass()); // ParentClass {}
+// The return value is ignored because it's not an object
+// This is consistent with function constructors
+
+class ChildClass extends ParentClass {
+  constructor() {
+    return 1;
+  }
+}
+
+console.log(new ChildClass()); // TypeError: Derived constructors may only return object or undefined
+~~~
+
+If the parent class constructor returns an object, that object will be used as the this value on which class fields of the derived class will be defined. This trick is called "return overriding", which allows a derived class's fields (including private ones) to be defined on unrelated objects.
+
+There can be only one special method with the name constructor in a class. Having more than one occurrence of a constructor method in a class will throw a SyntaxError error. Having a getter or setter called constructor is also a SyntaxError.
+
+The constructor follows normal method syntax, so parameter default values, rest parameters, etc. can all be used.
+
+~~~js
+class Person {
+  constructor(name = "Anonymous") {
+    this.name = name;
+  }
+  introduce() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+const person = new Person();
+person.introduce(); // Hello, my name is Anonymous
+~~~
+
+The constructor must be a literal name. Computed properties cannot become constructors.
+
+~~~js
+class Foo {
+  // This is a computed property. It will not be picked up as a constructor.
+  ["constructor"]() {
+    console.log("called");
+    this.a = 1;
+  }
+}
+
+const foo = new Foo(); // No log
+console.log(foo); // Foo {}
+foo.constructor(); // Logs "called"
+console.log(foo); // Foo { a: 1 }
+
+~~~
+
+## Examples
+
+~~~js
+class Square extends Polygon {
+  constructor(length) {
+    // Here, it calls the parent class' constructor with lengths
+    // provided for the Polygon's width and height
+    super(length, length);
+    // NOTE: In derived classes, `super()` must be called before you
+    // can use `this`. Leaving this out will cause a ReferenceError.
+    this.name = "Square";
+  }
+
+  get area() {
+    return this.height * this.width;
+  }
+
+  set area(value) {
+    this.height = value ** 0.5;
+    this.width = value ** 0.5;
+  }
+}
+~~~
+
+Calling super in a constructor bound to a different prototype
+`super()` calls the constructor that's the prototype of the current class. If you change the prototype of the current class itself, `super()` will call the constructor of the new prototype. Changing the prototype of the current class's prototype property doesn't affect which constructor `super()` calls.
+
+~~~js
+class Polygon {
+  constructor() {
+    this.name = "Polygon";
+  }
+}
+
+class Rectangle {
+  constructor() {
+    this.name = "Rectangle";
+  }
+}
+
+class Square extends Polygon {
+  constructor() {
+    super();
+  }
+}
+
+// Make Square extend Rectangle (which is a base class) instead of Polygon
+Object.setPrototypeOf(Square, Rectangle);
+
+const newInstance = new Square();
+
+// newInstance is still an instance of Polygon, because we didn't
+// change the prototype of Square.prototype, so the prototype chain
+// of newInstance is still
+//   newInstance --> Square.prototype --> Polygon.prototype
+console.log(newInstance instanceof Polygon); // true
+console.log(newInstance instanceof Rectangle); // false
+
+// However, because super() calls Rectangle as constructor, the name property
+// of newInstance is initialized with the logic in Rectangle
+console.log(newInstance.name); // Rectangle
+~~~
