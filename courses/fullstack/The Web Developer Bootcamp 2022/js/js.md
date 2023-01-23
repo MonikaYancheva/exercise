@@ -25,7 +25,7 @@ Nesting templates
 In certain cases, nesting a template is the easiest (and perhaps more readable) way to have configurable strings. Within a backtick-delimited template, it is simple to allow inner backticks by using them inside an ${expression} placeholder within the template.
 
 For example, without template literals, if you wanted to return a certain value based on a particular condition, you could do something like the following:
-
+```js
 let classes = 'header';
 classes += (isLargeScreen() ?
   '' : item.isCollapsed ?
@@ -81,10 +81,16 @@ Math.round(x)	Returns x rounded to its nearest integer
 Math.ceil(x)	Returns x rounded up to its nearest integer
 Math.floor(x)	Returns x rounded down to its nearest integer
 Math.trunc(x)	Returns the integer part of x (new in ES6)
-Conditional statements
-If...Else
+```
+
+### Conditional statements
+
+
+## If...Else
+
 -The if statement executes a statement if a specified condition is truthy. If the condition is falsy, another statement in the optional else clause will be executed.
 
+```js
 function checkValue(a, b) {
   if (a === 1) {
     if (b === 2) {
@@ -94,11 +100,11 @@ function checkValue(a, b) {
     }
   }
 }
+```
 
-
-* Switch
-  
-  ``` js 
+## Switch
+ 
+```js 
   const day = 3;
 switch (day) { 
   case 1:
@@ -125,10 +131,17 @@ switch (day) {
   default:
       console.log("I don't know that!")     
   }
-JavaScript Array Methods and Properties
-Name Description concat() Joins arrays and returns an array with the joined arrays constructor Returns the function that created the Array object's prototype copyWithin() Copies array elements within the array, to and from specified positions entries() Returns a key/value pair Array Iteration Object every() Checks if every element in an array pass a test fill() Fill the elements in an array with a static value filter() Creates a new array with every element in an array that pass a test find() Returns the value of the first element in an array that pass a test findIndex() Returns the index of the first element in an array that pass a test forEach() Calls a function for each array element from() Creates an array from an object includes() Check if an array contains the specified element indexOf() Search the array for an element and returns its position isArray() Checks whether an object is an array join() Joins all elements of an array into a string keys() Returns a Array Iteration Object, containing the keys of the original array lastIndexOf() Search the array for an element, starting at the end, and returns its position length Sets or returns the number of elements in an array map() Creates a new array with the result of calling a function for each array element pop() Removes the last element of an array, and returns that element prototype Allows you to add properties and methods to an Array object push() Adds new elements to the end of an array, and returns the new length
 
-The JavaScripty Array Object
+  ```
+
+
+
+### JavaScript Array Methods and Properties
+
+Name Description `concat()` Joins arrays and returns an array with the joined arrays constructor Returns the function that created the Array object's prototype `copyWithin()` Copies array elements within the array, to and from specified positions `entries()` Returns a key/value pair Array Iteration Object `every()` Checks if every element in an array pass a test `fill()` Fill the elements in an array with a static value `filter()` Creates a new array with every element in an array that pass a test `find()` Returns the value of the first element in an array that pass a test `findIndex()` Returns the index of the first element in an array that pass a test `forEach()` Calls a function for each array element `from()` Creates an array from an object `includes()` Check if an array contains the specified element `indexOf()` Search the array for an element and returns its position isArray() Checks whether an object is an array `join()` Joins all elements of an array into a string `keys()` Returns a Array Iteration Object, containing the keys of the original array `lastIndexOf()` Search the array for an element, starting at the end, and returns its position length Sets or returns the number of elements in an array `map()` Creates a new array with the result of calling a function for each array element `pop()` Removes the last element of an array, and returns that element prototype Allows you to add properties and methods to an Array object `push()` Adds new elements to the end of an array, and returns the new length
+
+## The JavaScript Array Object
+
 The Array object is used to store multiple values in a single variable:
 
 const cars = ["Saab", "Volvo", "BMW"];
@@ -161,10 +174,10 @@ document.getElementById("demo").innerHTML = x;
 </body>
 </html>
 
-# for...of
+## for...of
 The for...of statement creates a loop iterating over iterable objects, including: built-in String, Array, array-like objects (e.g., arguments or NodeList), TypedArray, Map, Set, and user-defined iterables. It invokes a custom iteration hook with statements to be executed for the value of each distinct property of the object.
 ## JavaScript Demo: Statement - For...Of
- ~~~js
+ ```js
  const array1 = ['a', 'b', 'c'];
 
 for (const element of array1) {
@@ -178,16 +191,16 @@ for (const element of array1) {
 for (variable of iterable) {
   statement
 }
-js
+```
 
-variable
+## variable
 On each iteration a value of a different property is assigned to variable. variable may be declared with const, let, or var.
 
 iterable
 Object whose iterable properties are iterated.
 # Examples
 
-~~~ js
+```js
 const iterable = [10, 20, 30];
 
 for (const value of iterable) {
@@ -196,13 +209,13 @@ for (const value of iterable) {
 // 10
 // 20
 // 30
-js
+```
 
 
 ## The return statement ends function execution and specifies a value to be returned to the function caller.
 
 
-~~~ js
+```js
 
 function isShortsWeather (temperature) {
     if (temperature >= 75) {
@@ -226,7 +239,7 @@ function lastElement (someArray) {
 function capitalize (string) {
    return string[0].toUpperCase() + string.slice(1).toLowerCase(); 
 }
- js
+```
 
  ## SCOPE
 
@@ -241,8 +254,7 @@ In addition, variables declared with let or const can belong to an additional sc
 
 Block scope: The scope created with a pair of curly braces (a block).
 A function creates a scope, so that (for example) a variable defined exclusively within the function cannot be accessed from outside the function or within other functions. For instance, the following is invalid:
-
-~~~ js
+```js
 
 function exampleFunction() {
   const x = "declared inside function";  // x can only be used in exampleFunction
@@ -264,21 +276,21 @@ function exampleFunction() {
 
 console.log("Outside function");
 console.log(x);
-js
+```
  
 
- ##EXERCISES
+ ### EXERCISES
 
 Define an object called square, which will hold methods that have to do with the geometry of squares. It should contain two methods, area and perimeter 
 
 area should accept the length of a side (all sides are the same in a square) and then return the side squared. 
 
 perimeter should accept the length of a side and return that side multiplied by 4.
-
+```js
 square.area(10) //100
 square.perimeter(10) //40
 
-js
+
   const square = {
     area(side) {
       return side * side;
@@ -287,6 +299,7 @@ js
       return side * 4;
     },
 };
+```
 
 
 
@@ -299,7 +312,7 @@ eggCount should be set to 0
 
 layAnEgg should be a method which increments the value of eggCount by 1 and returns the string "EGG".  You'll need to use this.
 
-```
+```js
   const hen = {
     name:"Helen",
     eggCount:0,
@@ -309,13 +322,13 @@ layAnEgg should be a method which increments the value of eggCount by 1 and retu
     
     }
 }
-
+```
 
  ## try...catch
 
      the try...catch statement is comprised of a try block and either a catch block, a finally block, or both. The code in the try block is executed first, and if it throws an exception, the code in the catch block will be executed. The code in the finally block will always be executed before control flow exits the entire construct.
 
-  js
+  ```js
        try {
   nonExistentFunction();
 } catch (error) {
@@ -323,29 +336,31 @@ layAnEgg should be a method which increments the value of eggCount by 1 and retu
   // expected output: ReferenceError: nonExistentFunction is not defined
   // Note - error messages will vary depending on browser
 }
+```
 
 
 
 
 
  ### JavaScript try and catch
+
 The try statement allows you to define a block of code to be tested for errors while it is being executed.
 
 The catch statement allows you to define a block of code to be executed, if an error occurs in the try block.
 
 The JavaScript statements try and catch come in pairs:
 
-~~~ js
+```js
 try {
   Block of code to try
 }
 catch(err) {
   Block of code to handle errors
 }
-js
+```
 
 ## map() method
-The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
+The `map()` method creates a new array populated with the results of calling a provided function on every element in the calling array.
 
 Define a variable named firstNames and assign it to the result of mapping over the existing array, fullNames, so that firstNames contains only the first names of the Harry Potter characters from the fullNames array.
 
@@ -360,17 +375,16 @@ The fullNames array is an array of objects with each object containing propertie
 
 This exercise has been updated, you may see Q&A threads from this lecture that relate to the original exercise which no longer exists. They can be ignored.
 
-~~~js
+```js
 const fullNames = [{first: 'Albus', last: 'Dumbledore'}, {first: 'Harry', last: 'Potter'}, {first: 'Hermione', last: 'Granger'}, {first: 'Ron', last: 'Weasley'}, {first: 'Rubeus', last: 'Hagrid'}, {first: 'Minerva', last: 'McGonagall'}, {first: 'Severus', last: 'Snape'}];
 
 const firstNames = fullNames.map(function(name){
 return name.first;
 })
-
-~~~
+```
 
 # Write an arrow function expression called greet.  It should accept a single string argument, representing a person's name.  It should return a greeting string as shown below:
-~~~js
+```js
 greet("Hagrid") //"Hey Hagrid!" 
 greet("Luna") //"Hey Luna!"
 Be sure to use arrow function syntax!
@@ -382,13 +396,13 @@ const greet = (name) => {
 
 greet("Hagrid");
 greet("Luna");
-~~~
+```
 
 
-## The `filter()` method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
+ ## The `filter()` method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.
 
 Let's get some practice using the filter method. Write a function called validUserNames that accepts an array of usernames (strings).  It should return a new array, containing only the usernames that are less than 10 characters. For example:
-~~~js
+```js
 validUserNames(['mark', 'staceysmom1978', 'q29832128238983', 'carrie98', 'MoanaFan']);
 // => ["mark", "carrie98", "MoanaFan"]\
 
@@ -418,7 +432,7 @@ allEvens([1,2,3]) //false
 function allEvens(arr) {
 return arr.every(val => val % 2 === 0)
 };
-~~~
+```
 
 ## The `reduce()` method executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
 
@@ -3441,3 +3455,7 @@ console.log(newInstance instanceof Rectangle); // false
 // of newInstance is initialized with the logic in Rectangle
 console.log(newInstance.name); // Rectangle
 ~~~
+
+
+# Node JS
+
