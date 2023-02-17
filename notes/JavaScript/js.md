@@ -1,18 +1,17 @@
 # String
+
 ## String template literals
 
 ```js
 `string text line 1
- string text line 2`
-
-`string text ${expression} string text`
+ string text line 2``string text ${expression} string text`;
 
 // Tagged, this calls the function "tagFunction" with the template as the
 // first argument and substitution values as subsequent arguments:
-tagFunction`string text ${expression} string text`
+tagFunction`string text ${expression} string text`;
 ```
 
-> With _template literals_, you can __avoid the concatenation__ operator — and improve the readability of your code — by using placeholders of the form `${expression}` to perform substitutions for embedded expressions:
+> With _template literals_, you can **avoid the concatenation** operator — and improve the readability of your code — by using placeholders of the form `${expression}` to perform substitutions for embedded expressions:
 
 ```js
 const a = 5;
@@ -21,52 +20,44 @@ console.log(`Fifteen is ${a + b} and
 not ${2 * a + b}.`);
 // "Fifteen is 15 and
 // not 20."
-
 ```
 
 > Note that there's a mild difference between the two syntaxes. Addition would coerce the expression to a primitive, which calls `valueOf()` in priority; on the other hand, template literal would coerce the expression to a string, which calls `toString()` in priority. If the expression has a @@toPrimitive method, string concatenation calls it with "default" as hint, while template literals use "string". This is important for objects that have different string and primitive representations — such as Temporal, whose `valueOf()` method throws.
 
 ```js
 const t = Temporal.Now.instant();
-"" + t; // Throws TypeError
+'' + t; // Throws TypeError
 `${t}`; // '2022-07-31T04:48:56.113918308Z'
-
 ```
 
 ## Nesting templates
 
 In certain cases, nesting a template is the easiest (and perhaps more readable) way to have configurable strings. Within a backtick-delimited template, it is simple to allow inner backticks by using them inside an `${expression}` placeholder within the template.
 
-For example, __without template literals__, if you wanted to return a certain value based on a particular condition, you could do something like the following:
+For example, **without template literals**, if you wanted to return a certain value based on a particular condition, you could do something like the following:
 
 ```js
 let classes = 'header';
-classes += (isLargeScreen() ?
-  '' : item.isCollapsed ?
-    ' icon-expander' : ' icon-collapser');
-
+classes += isLargeScreen() ? '' : item.isCollapsed ? ' icon-expander' : ' icon-collapser';
 ```
->With a template literal but without nesting, you could do this:
+
+> With a template literal but without nesting, you could do this:
 
 ```js
 let classes = 'header';
-classes += (isLargeScreen() ?
-  '' : item.isCollapsed ?
-    ' icon-expander' : ' icon-collapser');
-
+classes += isLargeScreen() ? '' : item.isCollapsed ? ' icon-expander' : ' icon-collapser';
 ```
->With nesting of template literals, you can do this:
+
+> With nesting of template literals, you can do this:
 
 ```js
-const classes = `header ${ isLargeScreen() ? '' :
-  `icon-${item.isCollapsed ? 'expander' : 'collapser'}` }`;
-
+const classes = `header ${isLargeScreen() ? '' : `icon-${item.isCollapsed ? 'expander' : 'collapser'}`}`;
 ```
 
 ## Null and Undefined
 
->null
-/en-US/docs/Web/JavaScript/Reference/Operators/null
+> null
+> /en-US/docs/Web/JavaScript/Reference/Operators/null
 
 …with a literal: null. null is not an identifier for a property of the global object, like undefined can be.…
 …// "undefined"` null === undefined` // `false null == undefined` // `true null === null` // `true null == null`…
@@ -95,29 +86,28 @@ undefined
 
 <br/>
 
-
-
 ## The JavaScript Math object allows you to perform mathematical tasks on numbers.
 
 ### Math Properties (Constants)
+
 The syntax for any Math property is : Math.property.
 
 JavaScript provides 8 mathematical constants that can be accessed as Math properties:
 
 ```js
-Math.E        // returns Euler's number
-Math.PI       // returns PI
-Math.SQRT2    // returns the square root of 2
-Math.SQRT1_2  // returns the square root of 1/2
-Math.LN2      // returns the natural logarithm of 2
-Math.LN10     // returns the natural logarithm of 10
-Math.LOG2E    // returns base 2 logarithm of E
-Math.LOG10E   // returns base 10 logarithm of E
-
+Math.E; // returns Euler's number
+Math.PI; // returns PI
+Math.SQRT2; // returns the square root of 2
+Math.SQRT1_2; // returns the square root of 1/2
+Math.LN2; // returns the natural logarithm of 2
+Math.LN10; // returns the natural logarithm of 10
+Math.LOG2E; // returns base 2 logarithm of E
+Math.LOG10E; // returns base 10 logarithm of E
 ```
 
->### Math Methods
-The syntax for Math any methods is : Math.method(number)
+> ### Math Methods
+>
+> The syntax for Math any methods is : Math.method(number)
 
 Number to Integer
 There are 4 common methods to round a number to an integer:
@@ -129,14 +119,14 @@ Math.floor(x)	Returns x rounded down to its nearest integer
 Math.trunc(x)	Returns the integer part of x (new in ES6)
 
 ```
->## Conditional statements
 
+> ## Conditional statements
 
-* If...Else
+- If...Else
 
 -The if statement executes a statement if a specified condition is truthy. If the condition is falsy, another statement in the optional else clause will be executed.
 
-``` js
+````js
 function checkValue(a, b) {
   if (a === 1) {
     if (b === 2) {
@@ -149,10 +139,10 @@ function checkValue(a, b) {
 
 
 * Switch
-  
-  ``` js 
+
+  ``` js
   const day = 3;
-switch (day) { 
+switch (day) {
   case 1:
     console.log("Monday");
      break;
@@ -164,56 +154,56 @@ switch (day) {
     break;
   case 4:
     console.log("Thursday");
-    break;    
+    break;
   case 5:
     console.log("Friday");
-    break;   
+    break;
   case 6:
     console.log("Saturday");
-    break; 
+    break;
   case 7:
-    console.log("Sunday"); 
+    console.log("Sunday");
     break;
   default:
-      console.log("I don't know that!")     
+      console.log("I don't know that!")
   }
-  ```
+````
 
-># JavaScript Array Methods and Properties
+> # JavaScript Array Methods and Properties
 
-Name	Description
-`concat()`	Joins arrays and returns an array with the joined arrays
-`constructor`	Returns the function that created the Array object's prototype
-`copyWithin()`	Copies array elements within the array, to and from specified positions
-`entries()`	Returns a key/value pair Array Iteration Object
-`every()`	Checks if every element in an array pass a test
-`fill()`	Fill the elements in an array with a static value
-`filter()`	Creates a new array with every element in an array that pass a test
-`find()`	Returns the value of the first element in an array that pass a test
-`findIndex()`	Returns the index of the first element in an array that pass a test
-`forEach()`	Calls a function for each array element
-`from()`	Creates an array from an object
-`includes()`	Check if an array contains the specified element
-`indexOf()`	Search the array for an element and returns its position
-`isArray()`	Checks whether an object is an array
-`join()`	Joins all elements of an array into a string
-`keys()`	Returns a Array Iteration Object, containing the keys of the original array
-`lastIndexOf()`	Search the array for an element, starting at the end, and returns its position
-`length`	Sets or returns the number of elements in an array
-`map()`	Creates a new array with the result of calling a function for each array element
-`pop()`	Removes the last element of an array, and returns that element
-`prototype`	Allows you to add properties and methods to an Array object
-`push()`	Adds new elements to the end of an array, and returns the new length
+Name Description
+`concat()` Joins arrays and returns an array with the joined arrays
+`constructor` Returns the function that created the Array object's prototype
+`copyWithin()` Copies array elements within the array, to and from specified positions
+`entries()` Returns a key/value pair Array Iteration Object
+`every()` Checks if every element in an array pass a test
+`fill()` Fill the elements in an array with a static value
+`filter()` Creates a new array with every element in an array that pass a test
+`find()` Returns the value of the first element in an array that pass a test
+`findIndex()` Returns the index of the first element in an array that pass a test
+`forEach()` Calls a function for each array element
+`from()` Creates an array from an object
+`includes()` Check if an array contains the specified element
+`indexOf()` Search the array for an element and returns its position
+`isArray()` Checks whether an object is an array
+`join()` Joins all elements of an array into a string
+`keys()` Returns a Array Iteration Object, containing the keys of the original array
+`lastIndexOf()` Search the array for an element, starting at the end, and returns its position
+`length` Sets or returns the number of elements in an array
+`map()` Creates a new array with the result of calling a function for each array element
+`pop()` Removes the last element of an array, and returns that element
+`prototype` Allows you to add properties and methods to an Array object
+`push()` Adds new elements to the end of an array, and returns the new length
 
-
->## The JavaScripty Array Object
-The Array object is used to store multiple values in a single variable:
+> ## The JavaScripty Array Object
+>
+> The Array object is used to store multiple values in a single variable:
 
 const cars = ["Saab", "Volvo", "BMW"];
 
 Array indexes are zero-based: The first element in the array is 0, the second is 1,and so on.
 
->## Nested JavaScript Objects and Arrays
+> ## Nested JavaScript Objects and Arrays
 
 ```js
 <script>
@@ -247,15 +237,14 @@ document.getElementById("demo").innerHTML = x;
 
 ---
 
-* hhhhhk
-  * uygjgj
-  * kjhgjhgjh
-* juy
-* jghghhg
+- hhhhhk
+  - uygjgj
+  - kjhgjhgjh
+- juy
+- jghghhg
 
-- ghghghg
-- hjhkhk
-
+* ghghghg
+* hjhkhk
 
 jfgfghfghfjhfghfhg  
 hjgjgjhjjgj

@@ -1,8 +1,8 @@
 .vertical a {
-	display: none;
-	/*visibility: hidden;*/
+  display: none;
+  /*visibility: hidden;*/
 }
 
 .list-item-inline li {
-	display: inline;
+  display: inline;
 }

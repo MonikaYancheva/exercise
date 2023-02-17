@@ -1,4 +1,5 @@
-Universal selector 
+Universal selector
+
 ```CSS
 * {
    color:black;
@@ -19,7 +20,7 @@ ID Selector
   background-color:#847881;
   color:white;
  }
-  
+
 Class selector
 
 .done {
@@ -39,7 +40,7 @@ h1 + p {
 }
 
 h2 + button {
-background-color:yellow; 
+background-color:yellow;
 
 }
 
@@ -53,7 +54,7 @@ Select all input elements where the type attribute is set to "text"
 input [type="text"] {
   width: 300px;
   color:yellow;
- } 
+ }
 
  * <a> elements with a title attribute */
 a[title] {

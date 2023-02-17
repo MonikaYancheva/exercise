@@ -1,22 +1,21 @@
 #virtual-btn {
-	background-color: gray;
-	display: inline;
-	padding: 4px 10px;
-	color: #fff;
-	border: 1px solid #000;
-	border-radius: 4px;
-	cursor: pointer;
+  background-color: gray;
+  display: inline;
+  padding: 4px 10px;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
 }
 button {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .red-square {
-	width: 150px;
-	height: 150px;
-	line-height: 150px;
-	background-color: red;
-	color: #fff;
-	text-align: center;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  background-color: red;
+  color: #fff;
+  text-align: center;
 }
-

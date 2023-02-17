@@ -1,15 +1,14 @@
 .container {
-	max-width: 1000px;
-	margin: 0 auto;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 article body {
-    position:absolute ;
-	
+  position: absolute;
 }
 
 fixed-arrow {
-	position: fixed;
-	bottom: 0;
-	right: 0;
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }

@@ -12,4 +12,4 @@
 
 - `git pull` - pull the latest pushed changes from the server to the pc
 
-- `sd..`  - Dir up
+- `sd..` - Dir up

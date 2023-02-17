@@ -1,25 +1,26 @@
-h1{
-	font-style: italic;
-	font-size:30px;
-	color: red;
-	background-color: yellow;
+h1 {
+  font-style: italic;
+  font-size: 30px;
+  color: red;
+  background-color: yellow;
 }
 
 #title-2 {
-	background-color: blue;
-	color: white;
-
+  background-color: blue;
+  color: white;
 }
-.style-by-class{
-	background-color: green;
-	color: yellow;
+.style-by-class {
+  background-color: green;
+  color: yellow;
 }
-.big-size{
-	font-size: 40px;
+.big-size {
+  font-size: 40px;
 }
-.font-italic{
-	font-style: italic;
+.font-italic {
+  font-style: italic;
 }
-h1,h2,h3{
-	text-align: center;
+h1,
+h2,
+h3 {
+  text-align: center;
 }

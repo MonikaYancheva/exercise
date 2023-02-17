@@ -1,10 +1,10 @@
-body{
-	background-image:url("../images/photo.jpg");
-	background-repeat:no-repeat;
-	background-size:cover;
+body {
+  background-image: url('../images/photo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.bg-blue{
-	background-color: rgba(62, 154, 227,0.5);
-	color:white;
-	padding:30px;
+.bg-blue {
+  background-color: rgba(62, 154, 227, 0.5);
+  color: white;
+  padding: 30px;
 }

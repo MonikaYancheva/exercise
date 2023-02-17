@@ -5,16 +5,16 @@ const qty = document.querySelector('#qty');
 const list = document.querySelector('#list');
 
 form.addEventListener('submit', function (grocery) {
-  grocery.preventDefault()
+  grocery.preventDefault();
 
-  const productName = product.value
-  const size = qty.value
-  const data = `You Bought ${product.value}  ${qty.value} times.`
-  const newLi = document.createElement('li')
+  const productName = product.value;
+  const size = qty.value;
+  const data = `You Bought ${product.value}  ${qty.value} times.`;
+  const newLi = document.createElement('li');
 
-  newLi.innerText = data
-  list.appendChild(newLi)
-  
-  product.value = ''
-  qty.value = ''
-})
+  newLi.innerText = data;
+  list.appendChild(newLi);
+
+  product.value = '';
+  qty.value = '';
+});

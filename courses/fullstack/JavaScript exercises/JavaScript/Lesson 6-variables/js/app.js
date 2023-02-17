@@ -1,8 +1,8 @@
-var myName ="Monika" ;
+var myName = 'Monika';
 
 console.log(myName);
 
-myName = "Ivelin";
+myName = 'Ivelin';
 
 console.log(myName);
 

@@ -1,34 +1,29 @@
-function showMyName (firstName,lastName) {
-	return alert(firstName + " " + lastName);
+function showMyName(firstName, lastName) {
+  return alert(firstName + ' ' + lastName);
 }
-showMyName("Monika", "Yancheva");
-
+showMyName('Monika', 'Yancheva');
 
 function car(make, model) {
-	return alert(make + " " + model);
+  return alert(make + ' ' + model);
 }
 
 function addNumber(x, y) {
-	var result = x + y;
-	return alert(result);
-
+  var result = x + y;
+  return alert(result);
 }
 
-var getElId = document.getElementById("virtual-btn");
+var getElId = document.getElementById('virtual-btn');
 
 // console.log(getElId);
 
-getElId.addEventListener("click",function(){
-	addNumber(50,100);
-
+getElId.addEventListener('click', function () {
+  addNumber(50, 100);
 });
 
-function sayHello (firstWord,secondWord) {
-	return alert(firstWord + " " + secondWord);
+function sayHello(firstWord, secondWord) {
+  return alert(firstWord + ' ' + secondWord);
 }
-sayHello("Hello", "World");
-
-
+sayHello('Hello', 'World');
 
 // function addSecondNumbers(z, j) {
 // 	var result2 = z + j + addNumber(2, 6);
@@ -37,4 +32,3 @@ sayHello("Hello", "World");
 // }
 
 // addSecondNumbers(10, 20);
-

@@ -1,26 +1,24 @@
 ol {
-	list-style-type:lower-hexadecimal;
+  list-style-type: lower-hexadecimal;
 }
 
-ul { 
-
-	list-style-type:square;
+ul {
+  list-style-type: square;
 }
 
- .style-by-class {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	background-image: url("../images/bullet.jpg");
-	background-repeat: no-repeat;
-	background-position:left center;
-	background-size: 18px 18px;
+.style-by-class {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background-image: url('../images/bullet.jpg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 18px 18px;
 }
-.style-by-class li{
-	background-image: url("../images/bullet.jpg");
-	background-repeat: no-repeat;
-	background-position:left center;
-	background-size: 18px 18px;
-	padding-left: 20px;
-
+.style-by-class li {
+  background-image: url('../images/bullet.jpg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 18px 18px;
+  padding-left: 20px;
 }

@@ -1,7 +1,7 @@
-const input = document.querySelector('input')
+const input = document.querySelector('input');
 
-input.addEventListener('input', (e) => {
-  const h1 = document.querySelector('h1')
+input.addEventListener('input', e => {
+  const h1 = document.querySelector('h1');
 
   //   h1.innerText = `Welcome, ${e.target.value}`
 
@@ -9,7 +9,7 @@ input.addEventListener('input', (e) => {
   //     h1.innerText = 'Enter Your Username'
   //   }
 
-  const {value} = e.target
+  const { value } = e.target;
 
-  h1.innerText = value.length === 0 ? 'Enter Your Username' : `Welcome, ${e.target.value}`
-})
+  h1.innerText = value.length === 0 ? 'Enter Your Username' : `Welcome, ${e.target.value}`;
+});
