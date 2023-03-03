@@ -7,7 +7,8 @@ interface DOMList {
 }
 
 export default class ListTemplate implements DOMList {
-  ul: HTMLUListElement;
+  // ul: HTMLUListElement;
+  ul;
 
   static instance: ListTemplate = new ListTemplate();
 
