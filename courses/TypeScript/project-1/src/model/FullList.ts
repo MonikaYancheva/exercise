@@ -14,7 +14,7 @@ export default class FullList implements List {
 
   private constructor(private _list: ListItem[] = []) {}
 
-  get List(): ListItem[] {
+  get list(): ListItem[] {
     return this._list;
   }
 
@@ -23,6 +23,7 @@ export default class FullList implements List {
     if (typeof storedList !== 'string') return;
 
     const parsedList: { _id: string; _item: string; _checked: boolean }[] = JSON.parse(storedList);
+
     parsedList.forEach(itemObj => {
       const newListItem = new ListItem(itemObj._id, itemObj._item, itemObj._checked);
       FullList.instance.addItem(newListItem);
