@@ -53,7 +53,7 @@ ctrl+delete	alt+delete	Delete to word end	✅
 ctrl+backspace	alt+backspace	Delete to word start	✅
 ctrl+=	cmd+=	Expand code block	
 ctrl+numpad_add	cmd+numpad_add	Expand code block	
-ctrl+-	cmd+-	Collapse code block	✅
+ctrl+-	cmd+-	Collapse code block	
 ctrl+numpad_subtract	cmd+numpad_subtract	Collapse code block	
 ctrl+alt+=	cmd+alt+=	Expand code block recursively	
 ctrl+alt+numpad_add	cmd+alt+numpad_add	Expand code block recursively	
@@ -131,16 +131,13 @@ ctrl+shift+f4	cmd+shift+f4	Close active run/messages/find/... tab	N/A
 ctrl+g	cmd+l	Go to line	✅
 ctrl+e	cmd+e	Recent files popup	✅
 ctrl+alt+left	cmd+alt+left	Navigate back	✅
-N/A	cmd+[	Navigate back	✅
 ctrl+alt+right	cmd+alt+right	Navigate forward	✅
-N/A	cmd+]	Navigate forward	✅
 ctrl+shift+backspace	cmd+shift+backspace	Navigate to last edit location	✅
 alt+f1	alt+f1	Select current file or symbol in any view	N/A
 ctrl+b	cmd+b	Go to declaration	
 ctrl+alt+b	cmd+alt+b	Go to implementation(s)	
 ctrl+u	cmd+u	Go to super implementation(s)	
 ctrl+shift+i	alt+space	Open quick definition lookup	✅
-N/A	cmd+y	Open quick definition lookup	✅
 ctrl+shift+b	ctrl+shift+b	Go to type declaration	
 ctrl+u	cmd+u	Go to super-method/super-class	
 alt+up	ctrl+up	Go to previous method	N/A
